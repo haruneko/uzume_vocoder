@@ -11,6 +11,5 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2 -s")
 
 message("${PROJECT_SOURCE_DIR}/dsp")
 file(GLOB DSP_SOURCES RELATIVE ${PROJECT_SOURCE_DIR} dsp/*.cpp)
-file(GLOB WORLD_SOURCES RELATIVE ${PROJECT_SOURCE_DIR} world/*.cpp)
 
-add_library(Uzume ${DSP_SOURCES} ${WORLD_SOURCES})
+add_library(Uzume ${DSP_SOURCES})
