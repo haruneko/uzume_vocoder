@@ -5,9 +5,9 @@
 #include <cmath>
 #include <cstdio>
 
-#include "Spectrogram.hpp"
-#include "SynthesizeImpulseResponse.hpp"
-#include "SynthesizePhrase.hpp"
+#include "include/Spectrogram.hpp"
+#include "include/SynthesizeImpulseResponse.hpp"
+#include "include/SynthesizePhrase.hpp"
 
 // This is a sample to use dsp directory.
 int main()

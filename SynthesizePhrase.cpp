@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 #include <algorithm>
-#include "SynthesizePhrase.hpp"
+#include "include/SynthesizePhrase.hpp"
 
 namespace {
     const double kPi = 3.1415926535897932384;

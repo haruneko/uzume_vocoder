@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 
-#include "SynthesizeImpulseResponse.hpp"
+#include "include/SynthesizeImpulseResponse.hpp"
 
 // WORLD (https://github.com/mmorise/World/) by mmorise is the original of those codes inside namespace.
 namespace {

@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 
-#include "Spectrogram.hpp"
+#include "include/Spectrogram.hpp"
 
 namespace {
     inline void initializeSpecgram(double ***target, int length, int fftSize) {
