@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.13)
 
 project(uzume_dsp CXX)
 
-add_library(uzume_dsp)
+add_library(uzume_dsp STATIC)
 target_compile_features(uzume_dsp
         PRIVATE
         cxx_std_11)
