@@ -4,6 +4,8 @@
 #ifndef __DSP_IMPULSE_RESPONSE_HPP__
 #define __DSP_IMPULSE_RESPONSE_HPP__
 
+namespace uzume { namespace dsp {
+
 /**
  * ImpulseResponse buffers an impulse response.
  */
@@ -25,5 +27,7 @@ private:
     double *raw;
     unsigned int _length;
 };
+
+} }
 
 #endif

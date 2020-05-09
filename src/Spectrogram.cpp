@@ -3,7 +3,9 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 
-#include "include/Spectrogram.hpp"
+#include "Spectrogram.hpp"
+
+using namespace uzume::dsp;
 
 namespace {
     inline void initializeSpecgram(double ***target, int length, int fftSize) {

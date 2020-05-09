@@ -4,10 +4,12 @@
 #ifndef __DSP_SYNTHESIZE_IMPULSE_RESPONSE_HPP__
 #define __DSP_SYNTHESIZE_IMPULSE_RESPONSE_HPP__
 
-#include "../fft.hpp"
+#include "fft.hpp"
 #include "GaussianNoiseGenerator.hpp"
 #include "ImpulseResponse.hpp"
 #include "Spectrum.hpp"
+
+namespace uzume { namespace dsp {
 
 class ImpulseResponseParameters final {
 public:
@@ -71,5 +73,7 @@ private:
 
     GaussianNoiseGenerator randn;
 };
+
+} }
 
 #endif

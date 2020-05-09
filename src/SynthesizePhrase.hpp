@@ -7,6 +7,8 @@
 #include "Spectrogram.hpp"
 #include "SynthesizeImpulseResponse.hpp"
 
+namespace uzume { namespace dsp {
+
 /**
  * PhraseSignal is a value class for phrase synthesis output.
  * This class is not responsible for memory allocation.
@@ -68,5 +70,7 @@ private:
     double f0Floor;
     double f0Default;
 };
+
+} }
 
 #endif

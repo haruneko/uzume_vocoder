@@ -3,7 +3,9 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 
-#include "include/SynthesizeImpulseResponse.hpp"
+#include "SynthesizeImpulseResponse.hpp"
+
+using namespace uzume::dsp;
 
 // WORLD (https://github.com/mmorise/World/) by mmorise is the original of those codes inside namespace.
 namespace {

@@ -4,6 +4,7 @@
 #ifndef __DSP_SPECTRUM_HPP
 #define __DSP_SPECTRUM_HPP
 
+namespace uzume { namespace dsp {
 /**
  * Spectrum represents a pair of spectra, periodic one and aperiodic one.
  */
@@ -17,5 +18,7 @@ public:
     double *aperiodicRatio;
     unsigned int fftSize;
 };
+
+} }
 
 #endif

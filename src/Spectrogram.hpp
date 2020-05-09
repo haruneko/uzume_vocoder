@@ -6,6 +6,8 @@
 
 #include "Spectrum.hpp"
 
+namespace uzume { namespace dsp {
+
 /**
  * Spectrogram represents an interface of vocal spectrogram.
  */
@@ -60,6 +62,8 @@ private:
     unsigned int _fftSize;
     double msFramePeriod;
 };
+
+} }
 
 #endif
 

@@ -3,7 +3,9 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 #include <algorithm>
-#include "include/SynthesizePhrase.hpp"
+#include "SynthesizePhrase.hpp"
+
+using namespace uzume::dsp;
 
 namespace {
     const double kPi = 3.1415926535897932384;
