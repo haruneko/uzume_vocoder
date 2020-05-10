@@ -47,7 +47,7 @@ target_sources(uzume_dsp_test
 
 target_link_libraries(uzume_dsp_test
         PRIVATE
-        #uzume_dsp
+        uzume_dsp
         gtest
         gtest_main
         gmock)

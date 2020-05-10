@@ -3,6 +3,8 @@
 // license that can be found in the LICENSE file.
 #include "constant.hpp"
 
+const double uzume::dsp::CutOff = 50.0;
+const double uzume::dsp::FloorF0StoneMask = 40.0;
 const double uzume::dsp::Pi =3.1415926535897932384;
 const double uzume::dsp::SafeGuardMinimum = 0.000000000001;
 const double uzume::dsp::Eps = 0.00000000000000022204460492503131;

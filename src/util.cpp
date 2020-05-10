@@ -114,3 +114,57 @@ void uzume::dsp::LinearSmoothing(const double *input, double width, int fs, int 
     delete[] low_levels;
     delete[] high_levels;
 }
+
+void uzume::dsp::NuttallWindow(int y_length, double *y) {
+    double tmp;
+    for (int i = 0; i < y_length; ++i) {
+        tmp  = i / (y_length - 1.0);
+        y[i] = 0.355768 - 0.487396 * cos(2.0 * Pi * tmp) + 0.144232 * cos(4.0 * Pi * tmp) - 0.012604 * cos(6.0 * Pi * tmp);
+    }
+}
+
+void uzume::dsp::histc(const double *x, int x_length, const double *edges, int edges_length, int *index) {
+    int count = 1;
+
+    int i = 0;
+    for (; i < edges_length; ++i) {
+        index[i] = 1;
+        if (edges[i] >= x[0]) break;
+    }
+    for (; i < edges_length; ++i) {
+        if (edges[i] < x[count]) {
+            index[i] = count;
+        } else {
+            index[i--] = count++;
+        }
+        if (count == x_length) break;
+    }
+    count--;
+    for (i++; i < edges_length; ++i) index[i] = count;
+}
+
+void uzume::dsp::interp1(const double *x, const double *y, int x_length, const double *xi, int xi_length, double *yi) {
+    double *h = new double[x_length - 1];
+    double *p = new double[xi_length];
+    double *s = new double[xi_length];
+    int *k = new int[xi_length];
+
+    for (int i = 0; i < x_length - 1; ++i) h[i] = x[i + 1] - x[i];
+    for (int i = 0; i < xi_length; ++i) {
+        p[i] = i;
+        k[i] = 0;
+    }
+
+    histc(x, x_length, xi, xi_length, k);
+
+    for (int i = 0; i < xi_length; ++i)
+        s[i] = (xi[i] - x[k[i] - 1]) / h[k[i] - 1];
+
+    for (int i = 0; i < xi_length; ++i)
+        yi[i] = y[k[i] - 1] + s[i] * (y[k[i]] - y[k[i] - 1]);
+
+    delete[] k;
+    delete[] s;
+    delete[] p;
+    delete[] h;
+}

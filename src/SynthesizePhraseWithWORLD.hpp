@@ -4,6 +4,7 @@
 #ifndef UZUME_DSP_SYNTHESIZE_PHRASE_WITH_WORLD_HPP
 #define UZUME_DSP_SYNTHESIZE_PHRASE_WITH_WORLD_HPP
 #include "SynthesizeImpulseResponse.hpp"
+#include "SynthesizePhrase.hpp"
 
 namespace uzume { namespace dsp {
 

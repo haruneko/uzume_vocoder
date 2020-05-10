@@ -5,6 +5,8 @@
 #define UZUME_DSP_CONSTANT_HPP
 
 namespace uzume { namespace dsp {
+    extern const double CutOff;
+    extern const double FloorF0StoneMask;
     extern const double Pi;
     extern const double SafeGuardMinimum;
     extern const double Eps;

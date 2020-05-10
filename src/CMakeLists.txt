@@ -18,6 +18,7 @@ target_sources(uzume_dsp
         AnalyzeAperiodicityWithD4C.cpp
         AnalyzePeriodicityWithCheapTrick.cpp
         constant.cpp
+        EstimateF0WithDIO.cpp
         fft.cpp
         GaussianNoiseGenerator.cpp
         ImpulseResponse.cpp
@@ -26,13 +27,16 @@ target_sources(uzume_dsp
         SynthesizeImpulseResponseWithWORLD.cpp
         SynthesizePhrase.cpp
         SynthesizePhraseWithWORLD.cpp
-        util.cpp)
+        util.cpp
+        Waveform.cpp)
 set_property(TARGET
         PROPERTY PUBLIC_HEADER
         AnalyzeAperiodicity.hpp
         AnalyzeAperiodicityWithD4C.hpp
         AnalyzePeriodicity.hpp
         AnalyzePeriodicityWithCheapTrick.hpp
+        EstimateF0.hpp
+        EstimateF0WithDIO.hpp
         GaussianNoiseGenerator.hpp
         ImpulseResponse.hpp
         NaiveSpectrogram.hpp
@@ -41,7 +45,8 @@ set_property(TARGET
         SynthesizeImpulseResponse.hpp
         SynthesizeImpulseResponseWithWORLD.hpp
         SynthesizePhrase.hpp
-        SynthesizePhraseWithWORLD.hpp)
+        SynthesizePhraseWithWORLD.hpp
+        Waveform.hpp)
 target_include_directories(uzume_dsp
         INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

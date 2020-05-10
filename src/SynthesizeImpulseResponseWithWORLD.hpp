@@ -7,7 +7,7 @@
 #include "GaussianNoiseGenerator.hpp"
 #include "SynthesizeImpulseResponse.hpp"
 
-namespace uzume { namespace dsp
+namespace uzume { namespace dsp {
 
 /**
 * SynthesizeImpulseResponseWithWORLD is WORLD's implementation of the SynthesizeImpulseResponse class.
