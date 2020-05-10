@@ -40,29 +40,6 @@ public:
     virtual unsigned int fftSize() const = 0;
 };
 
-class NaiveSpectrogram final : public Spectrogram {
-public:
-    NaiveSpectrogram() = delete;
-    NaiveSpectrogram(unsigned int length, unsigned int fftSize, double msFramePeriod);
-
-    ~NaiveSpectrogram() override;
-
-    bool pickUpSpectrumAt(Spectrum *destination, double ms) const override;
-    double f0At(double ms) const override;
-    double msLength() const override;
-    unsigned int fftSize() const override;
-
-    double **periodicSpecgram;
-    double **aperiodicSpecgram;
-    double *f0Contour;
-    double *timeAxis;
-
-private:
-    unsigned int length;
-    unsigned int _fftSize;
-    double msFramePeriod;
-};
-
 } }
 
 #endif

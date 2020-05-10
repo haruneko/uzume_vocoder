@@ -5,9 +5,11 @@
 #include <cmath>
 #include <cstdio>
 
-#include "src/Spectrogram.hpp"
-#include "src/SynthesizeImpulseResponse.hpp"
-#include "src/SynthesizePhrase.hpp"
+#include "NaiveSpectrogram.hpp"
+#include "SynthesizeImpulseResponse.hpp"
+#include "SynthesizePhrase.hpp"
+
+using namespace uzume::dsp;
 
 // This is a sample to use dsp directory.
 int main()
@@ -26,7 +28,7 @@ int main()
     }
 
     SynthesizeImpulseResponseWithWORLD irs(spectrogram.fftSize(), samplingFrequency);
-    SynthesizePhraseWithWORLD synthesize(&irs, /* f0Floor = */ 71.0, /* f0Default = */ 500.0);
+    SynthesizePhraseWithWORLD synthesize(&irs);
 
     PhraseSignal s(wave, /* indexMin = */ 0, /* indexMax = */ waveLength, samplingFrequency);
     PhraseParameters p(&spectrogram, /* startPhase = */ 0.0, /* startFractionalTimeShift = */ 0.0);

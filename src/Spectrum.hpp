@@ -7,15 +7,16 @@
 namespace uzume { namespace dsp {
 /**
  * Spectrum represents a pair of spectra, periodic one and aperiodic one.
+ * This class HAS a responsibility to free its allocated memories.
  */
-class Spectrum {
+class Spectrum final {
 public:
     Spectrum(unsigned int fftSize);
 
     ~Spectrum();
 
-    double *spectralEnvelope;
-    double *aperiodicRatio;
+    double *periodicSpectrum;
+    double *aperiodicSpectrum;
     unsigned int fftSize;
 };
 

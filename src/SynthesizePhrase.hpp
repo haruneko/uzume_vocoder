@@ -5,7 +5,6 @@
 #define __DSP_SYNTHESIZE_PHRASE_HPP__
 
 #include "Spectrogram.hpp"
-#include "SynthesizeImpulseResponse.hpp"
 
 namespace uzume { namespace dsp {
 
@@ -55,20 +54,6 @@ public:
      * @return false otherwise.
      */
     virtual bool operator()(PhraseSignal *output, PhraseParameters *input) = 0;
-};
-
-class SynthesizePhraseWithWORLD final : public SynthesizePhrase {
-public:
-    SynthesizePhraseWithWORLD() = delete;
-    explicit SynthesizePhraseWithWORLD(SynthesizeImpulseResponse *synthesize, double f0Floor = 71.0, double f0Default = 500.0);
-    ~SynthesizePhraseWithWORLD() override = default;
-
-    bool operator()(PhraseSignal *output, PhraseParameters *input) override;
-private:
-    SynthesizeImpulseResponse *synthesize;
-
-    double f0Floor;
-    double f0Default;
 };
 
 } }

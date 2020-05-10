@@ -11,7 +11,7 @@ namespace uzume { namespace dsp {
  */
 class ImpulseResponse final {
 public:
-    ImpulseResponse(unsigned int length);
+    explicit ImpulseResponse(unsigned int length);
 
     ~ImpulseResponse();
 
@@ -19,10 +19,10 @@ public:
 
     double *data() { return raw; }
 
-    int length() const { return this->_length; }
+    unsigned int length() const { return _length; }
 
 private:
-    ImpulseResponse() {}
+    ImpulseResponse() = default;
 
     double *raw;
     unsigned int _length;

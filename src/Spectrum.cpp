@@ -5,14 +5,14 @@
 
 using namespace uzume::dsp;
 
-Spectrum::Spectrum(unsigned int fftSize) : spectralEnvelope(nullptr), aperiodicRatio(nullptr), fftSize(fftSize) {
+Spectrum::Spectrum(unsigned int fftSize) : periodicSpectrum(nullptr), aperiodicSpectrum(nullptr), fftSize(fftSize) {
     if (fftSize != 0) {
-        spectralEnvelope = new double[fftSize];
-        aperiodicRatio = new double[fftSize];
+        periodicSpectrum = new double[fftSize];
+        aperiodicSpectrum = new double[fftSize];
     }
 }
 
 Spectrum::~Spectrum() {
-    delete[] spectralEnvelope;
-    delete[] aperiodicRatio;
+    delete[] periodicSpectrum;
+    delete[] aperiodicSpectrum;
 }

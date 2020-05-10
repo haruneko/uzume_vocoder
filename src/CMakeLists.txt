@@ -15,21 +15,33 @@ target_compile_options(uzume_dsp
         -Wall -Wextra -Wno-long-long -pedantic)
 target_sources(uzume_dsp
         PRIVATE
+        AnalyzeAperiodicityWithD4C.cpp
+        AnalyzePeriodicityWithCheapTrick.cpp
+        constant.cpp
         fft.cpp
         GaussianNoiseGenerator.cpp
         ImpulseResponse.cpp
-        Spectrogram.cpp
+        NaiveSpectrogram.cpp
         Spectrum.cpp
-        SynthesizeImpulseResponse.cpp
-        SynthesizePhrase.cpp)
+        SynthesizeImpulseResponseWithWORLD.cpp
+        SynthesizePhrase.cpp
+        SynthesizePhraseWithWORLD.cpp
+        util.cpp)
 set_property(TARGET
         PROPERTY PUBLIC_HEADER
+        AnalyzeAperiodicity.hpp
+        AnalyzeAperiodicityWithD4C.hpp
+        AnalyzePeriodicity.hpp
+        AnalyzePeriodicityWithCheapTrick.hpp
         GaussianNoiseGenerator.hpp
         ImpulseResponse.hpp
+        NaiveSpectrogram.hpp
         Spectrogram.hpp
         Spectrum.hpp
         SynthesizeImpulseResponse.hpp
-        SynthesizePhrase.hpp)
+        SynthesizeImpulseResponseWithWORLD.hpp
+        SynthesizePhrase.hpp
+        SynthesizePhraseWithWORLD.hpp)
 target_include_directories(uzume_dsp
         INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
