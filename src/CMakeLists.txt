@@ -29,7 +29,7 @@ target_sources(uzume_dsp
         SynthesizePhraseWithWORLD.cpp
         util.cpp
         Waveform.cpp)
-set_property(TARGET
+set_property(TARGET uzume_dsp
         PROPERTY PUBLIC_HEADER
         AnalyzeAperiodicity.hpp
         AnalyzeAperiodicityWithD4C.hpp
@@ -37,6 +37,7 @@ set_property(TARGET
         AnalyzePeriodicityWithCheapTrick.hpp
         EstimateF0.hpp
         EstimateF0WithDIO.hpp
+        fft.hpp
         GaussianNoiseGenerator.hpp
         ImpulseResponse.hpp
         NaiveSpectrogram.hpp
@@ -46,6 +47,7 @@ set_property(TARGET
         SynthesizeImpulseResponseWithWORLD.hpp
         SynthesizePhrase.hpp
         SynthesizePhraseWithWORLD.hpp
+        util.hpp
         Waveform.hpp)
 target_include_directories(uzume_dsp
         INTERFACE
@@ -53,6 +55,6 @@ target_include_directories(uzume_dsp
         $<INSTALL_INTERFACE:include>)
 install(TARGETS uzume_dsp
         EXPORT libuzume_dsp
-        ARCHIVE DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/lib/
-        LIBRARY DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/lib/
-        PUBLIC_HEADER DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/include)
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        PUBLIC_HEADER DESTINATION include)
