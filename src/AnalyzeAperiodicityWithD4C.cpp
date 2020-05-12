@@ -307,21 +307,25 @@ AnalyzeAperiodicityWithD4C::AnalyzeAperiodicityWithD4C(unsigned int fftSize, uns
 
     InitializeForwardRealFFT(fftSizeForD4CLoveTrain(), &forwardRealFFtForD4CLoveTrain);
     int numAp = numberOfAperiodicities();
+
     coarseAperiodicity = new double[numAp + 2];
     coarseAperiodicity[0] = -60.0;
     coarseAperiodicity[numAp + 1] = -SafeGuardMinimum;
-    coarseFrequencyAxis = new double[numAp];
+
+    coarseFrequencyAxis = new double[numAp + 2];
     for(int i = 0; i <= numAp; i++) {
         coarseFrequencyAxis[i] = i * FrequencyInterval;
     }
     coarseFrequencyAxis[numAp + 1] = samplingFrequency / 2.0;
+
     int windowSize = (int)(FrequencyInterval * fs4D4C / samplingFrequency) * 2 + 1;
+    nuttallWindow = new double[windowSize];
+    NuttallWindow(windowSize, nuttallWindow);
+
     frequencyAxis = new double[fftSize / 2 + 1];
     for(unsigned int i = 0; i <= fftSize / 2 + 1; i++) {
         frequencyAxis[i] = (double)i * samplingFrequency / fftSize;
     }
-    nuttallWindow = new double[windowSize];
-    NuttallWindow(windowSize, nuttallWindow);
 }
 
 AnalyzeAperiodicityWithD4C::~AnalyzeAperiodicityWithD4C() noexcept {

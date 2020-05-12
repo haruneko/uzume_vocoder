@@ -40,6 +40,7 @@ set_property(TARGET uzume_dsp
         fft.hpp
         GaussianNoiseGenerator.hpp
         ImpulseResponse.hpp
+        InstantWaveform.hpp
         NaiveSpectrogram.hpp
         Spectrogram.hpp
         Spectrum.hpp

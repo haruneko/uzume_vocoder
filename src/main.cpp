@@ -5,9 +5,11 @@
 #include <cmath>
 #include <cstdio>
 
+#include "AnalyzeAperiodicityWithD4C.hpp"
+#include "AnalyzePeriodicityWithCheapTrick.hpp"
 #include "NaiveSpectrogram.hpp"
-#include "SynthesizeImpulseResponse.hpp"
-#include "SynthesizePhrase.hpp"
+#include "SynthesizeImpulseResponseWithWORLD.hpp"
+#include "SynthesizePhraseWithWORLD.hpp"
 
 using namespace uzume::dsp;
 
@@ -18,14 +20,15 @@ int main()
     int f0Length = 1000;
     NaiveSpectrogram spectrogram((unsigned int)f0Length, (unsigned int)fftSize, /* msFramePeriod = */ 1.0);
 
-    /* Analyze and create WORLD spectrogram here. */
-
     int waveLength = 44100;
     int samplingFrequency = 44100;
     double *wave = new double[waveLength];
     for(int i = 0; i < waveLength; i++) {
         wave[i] = 0.0;
     }
+    /* Analyze and create WORLD spectrogram here. */
+    AnalyzeAperiodicityWithD4C d4c(fftSize, samplingFrequency);
+    AnalyzePeriodicityWithCheapTrick cheapTrick(fftSize, samplingFrequency);
 
     SynthesizeImpulseResponseWithWORLD irs(spectrogram.fftSize(), samplingFrequency);
     SynthesizePhraseWithWORLD synthesize(&irs);

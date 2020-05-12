@@ -122,11 +122,12 @@ void DestroyMinimumPhaseAnalysis(MinimumPhaseAnalysis *minimum_phase) {
     delete[] minimum_phase->minimum_phase_spectrum;
 }
 
-void cdft(int n, int isgn, double *a, int *ip, double *w);
-
-void rdft(int n, int isgn, double *a, int *ip, double *w);
-
 namespace {
+    void cdft(int n, int isgn, double *a, int *ip, double *w);
+    void rdft(int n, int isgn, double *a, int *ip, double *w);
+    void makewt(int nw, int *ip, double *w);
+    void makect(int nc, int *ip, double *c);
+
     static void BackwardFFT(fft_plan p) {
         if (p.c_out == NULL) { // c2r
             p.input[0] = p.c_in[0][0];
@@ -181,8 +182,6 @@ namespace {
 
 fft_plan fft_plan_dft_1d(int n, fft_complex *in, fft_complex *out, int sign,
                          unsigned int flags) {
-    void makewt(int nw, int *ip, double *w);
-
     fft_plan output = {0};
     output.n = n;
     output.in = NULL;
@@ -202,9 +201,6 @@ fft_plan fft_plan_dft_1d(int n, fft_complex *in, fft_complex *out, int sign,
 
 fft_plan fft_plan_dft_c2r_1d(int n, fft_complex *in, double *out,
                              unsigned int flags) {
-    void makewt(int nw, int *ip, double *w);
-    void makect(int nc, int *ip, double *c);
-
     fft_plan output = {0};
     output.n = n;
     output.in = NULL;
@@ -225,9 +221,6 @@ fft_plan fft_plan_dft_c2r_1d(int n, fft_complex *in, double *out,
 
 fft_plan fft_plan_dft_r2c_1d(int n, double *in, fft_complex *out,
                              unsigned int flags) {
-    void makewt(int nw, int *ip, double *w);
-    void makect(int nc, int *ip, double *c);
-
     fft_plan output = {0};
     output.n = n;
     output.in = in;

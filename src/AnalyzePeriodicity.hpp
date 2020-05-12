@@ -3,17 +3,10 @@
 // license that can be found in the LICENSE file.
 #ifndef UZUME_DSP_ANALYZE_PERIODICITY_HPP
 #define UZUME_DSP_ANALYZE_PERIODICITY_HPP
+#include "InstantWaveform.hpp"
 #include "Spectrum.hpp"
 
 namespace uzume { namespace dsp {
-
-class InstantWaveform {
-public:
-    const double *wave;
-    const double f0;
-    const unsigned int length;
-    const unsigned int samplingFrequency;
-};
 
 class AnalyzePeriodicity {
 public:
