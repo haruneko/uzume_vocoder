@@ -8,10 +8,18 @@
 
 namespace uzume { namespace dsp {
 
+/**
+ * AnalyzePeriodicity is an interface to analyze periodic spectrum.
+ */
 class AnalyzePeriodicity {
 public:
     virtual ~AnalyzePeriodicity() = default;
 
+    /**
+     * () analyzes instant waveform in input and sets periodic spectrum into output.
+     * `input` should be instantaneous signal that contains, at least, a single period of voice.
+     * @return true if analysis is successful, otherwise false.
+     */
     virtual bool operator()(Spectrum *output, const InstantWaveform *input) = 0;
 };
 

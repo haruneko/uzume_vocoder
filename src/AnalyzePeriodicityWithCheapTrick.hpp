@@ -9,12 +9,18 @@
 
 namespace uzume { namespace dsp {
 
+/**
+ * AnalyzePeriodicityWithCheapTrick is an implementation of periodic spectrum analysis.
+ */
 class AnalyzePeriodicityWithCheapTrick final : public AnalyzePeriodicity {
 public:
     AnalyzePeriodicityWithCheapTrick() = delete;
     AnalyzePeriodicityWithCheapTrick(unsigned int fftSize, unsigned int samplingFrequency);
     ~AnalyzePeriodicityWithCheapTrick();
 
+    /**
+     * () analyze input with Cheap Trick and puts its periodic spectrum into output.
+     */
     bool operator()(Spectrum *output, const InstantWaveform *input) override;
 
     const unsigned int fftSize;

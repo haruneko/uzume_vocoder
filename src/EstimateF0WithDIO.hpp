@@ -7,12 +7,19 @@
 
 namespace uzume { namespace dsp {
 
+/**
+ * EstimateF0WithDIO is an implementation of f0 estimation.
+ */
 class EstimateF0WithDIO : public EstimateF0 {
 public:
     EstimateF0WithDIO() = delete;
     EstimateF0WithDIO(double msFramePeriod);
 
+    /**
+     * () estimates f0 with DIO and Stone mask.
+     */
     bool operator()(F0Contour *output, const Waveform *input) override;
+
     int getF0LengthFor(unsigned int samplingFrequency, unsigned int waveLength) const;
 private:
     double msFramePeriod;

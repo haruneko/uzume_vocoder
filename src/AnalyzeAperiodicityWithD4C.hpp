@@ -11,12 +11,18 @@
 
 namespace uzume { namespace dsp {
 
+/**
+ * AnalyzeAperiodicityWithD4C is an implementation of aperiodic spectrum analysis.
+ */
 class AnalyzeAperiodicityWithD4C final : public AnalyzeAperiodicity {
 public:
     AnalyzeAperiodicityWithD4C() = delete;
     AnalyzeAperiodicityWithD4C(unsigned int fftSize, unsigned int samplingFrequency);
     ~AnalyzeAperiodicityWithD4C();
 
+    /**
+     * () analyzes input with D4C and sets its aperiodic spectrum into output.
+     */
     bool operator()(Spectrum *output, const InstantWaveform *input) override;
 
     const unsigned int fftSize;
