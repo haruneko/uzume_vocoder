@@ -8,10 +8,10 @@ namespace uzume { namespace dsp {
 
 class InstantWaveform {
 public:
-    const double *wave;
-    const double f0;
-    const unsigned int length;
-    const unsigned int samplingFrequency;
+    double *wave;
+    double f0;
+    unsigned int length;
+    unsigned int samplingFrequency;
 };
 
 } }

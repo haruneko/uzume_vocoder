@@ -166,7 +166,9 @@ namespace {
         // Smoothing (log axis) and spectral recovery on the cepstrum domain.
         SmoothingWithRecovery(current_f0, fs, fft_size, q1, forward_real_fft, inverse_real_fft, spectral_envelope);
     }
-
+    double GetF0FloorForCheapTrick(int fs, int fft_size) {
+        return 3.0 * fs / (fft_size - 3.0);
+    }
 }  // namespace
 
 AnalyzePeriodicityWithCheapTrick::AnalyzePeriodicityWithCheapTrick(unsigned int fftSize, unsigned int samplingFrequency)
@@ -183,7 +185,8 @@ AnalyzePeriodicityWithCheapTrick::~AnalyzePeriodicityWithCheapTrick() noexcept {
 }
 
 bool AnalyzePeriodicityWithCheapTrick::operator()(Spectrum *output, const InstantWaveform *input) {
-    CheapTrickGeneralBody(input->wave, input->samplingFrequency, input->f0, output->fftSize,
+    double f0 = input->f0 <= GetF0FloorForCheapTrick(input->samplingFrequency, output->fftSize) ? DefaultF0 : input->f0;
+    CheapTrickGeneralBody(input->wave, input->samplingFrequency, f0, output->fftSize,
                           DefaultQ1, &forwardRealFft,&inverseRealFft, output->periodicSpectrum, &randn);
     return true;
 }

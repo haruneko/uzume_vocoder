@@ -239,7 +239,7 @@ namespace {
     }
 
 //-----------------------------------------------------------------------------
-// GetBestF0Contour() calculates the best f0 contour based on scores of
+// GetBestF0Contour() calculates the best data contour based on scores of
 // all candidates. The F0 with highest score is selected.
 //-----------------------------------------------------------------------------
     static void GetBestF0Contour(int f0_length,
@@ -260,7 +260,7 @@ namespace {
 
 //-----------------------------------------------------------------------------
 // FixStep1() is the 1st step of the postprocessing.
-// This function eliminates the unnatural change of f0 based on allowed_range.
+// This function eliminates the unnatural change of data based on allowed_range.
 //-----------------------------------------------------------------------------
     static void FixStep1(const double *best_f0_contour, int f0_length,
                          int voice_range_minimum, double allowed_range, double *f0_step1) {
@@ -272,7 +272,7 @@ namespace {
         for (int i = f0_length - voice_range_minimum; i < f0_length; ++i)
             f0_base[i] = 0.0;
 
-        // Processing to prevent the jumping of f0
+        // Processing to prevent the jumping of data
         for (int i = 0; i < voice_range_minimum; ++i) f0_step1[i] = 0.0;
         for (int i = voice_range_minimum; i < f0_length; ++i)
             f0_step1[i] =
@@ -283,7 +283,7 @@ namespace {
 
 //-----------------------------------------------------------------------------
 // FixStep2() is the 2nd step of the postprocessing.
-// This function eliminates the suspected f0 in the anlaut and auslaut.
+// This function eliminates the suspected data in the anlaut and auslaut.
 //-----------------------------------------------------------------------------
     static void FixStep2(const double *f0_step1, int f0_length, int voice_range_minimum, double *f0_step2) {
         for (int i = 0; i < f0_length; ++i) f0_step2[i] = f0_step1[i];
@@ -314,8 +314,8 @@ namespace {
     }
 
 //-----------------------------------------------------------------------------
-// SelectOneF0() corrects the f0[current_index] based on
-// f0[current_index + sign].
+// SelectOneF0() corrects the data[current_index] based on
+// data[current_index + sign].
 //-----------------------------------------------------------------------------
     static double SelectBestF0(double current_f0, double past_f0,
                                const double *const *f0_candidates, int number_of_candidates,
@@ -340,7 +340,7 @@ namespace {
 
 //-----------------------------------------------------------------------------
 // FixStep3() is the 3rd step of the postprocessing.
-// This function corrects the f0 candidates from backward to forward.
+// This function corrects the data candidates from backward to forward.
 //-----------------------------------------------------------------------------
     static void FixStep3(const double *f0_step2, int f0_length,
                          const double *const *f0_candidates, int number_of_candidates,
@@ -362,7 +362,7 @@ namespace {
 
 //-----------------------------------------------------------------------------
 // FixStep4() is the 4th step of the postprocessing.
-// This function corrects the f0 candidates from forward to backward.
+// This function corrects the data candidates from forward to backward.
 //-----------------------------------------------------------------------------
     static void FixStep4(const double *f0_step3, int f0_length,
                          const double *const *f0_candidates, int number_of_candidates,
@@ -383,7 +383,7 @@ namespace {
     }
 
 //-----------------------------------------------------------------------------
-// FixF0Contour() calculates the definitive f0 contour based on all f0
+// FixF0Contour() calculates the definitive data contour based on all data
 // candidates. There are four steps.
 //-----------------------------------------------------------------------------
     static void FixF0Contour(double frame_period, int number_of_candidates,
@@ -557,7 +557,7 @@ namespace {
     }
 
 //-----------------------------------------------------------------------------
-// GetF0CandidateContourSub() calculates the f0 candidates and deviations.
+// GetF0CandidateContourSub() calculates the data candidates and deviations.
 // This is the sub-function of GetF0Candidates() and assumes the calculation.
 //-----------------------------------------------------------------------------
     static void GetF0CandidateContourSub(
@@ -662,7 +662,7 @@ namespace {
     }
 
 //-----------------------------------------------------------------------------
-// GetF0CandidatesAndScores() calculates all f0 candidates and their scores.
+// GetF0CandidatesAndScores() calculates all data candidates and their scores.
 //-----------------------------------------------------------------------------
     static void GetF0CandidatesAndScores(const double *boundary_f0_list,
                                          int number_of_bands, double actual_fs, int y_length,
@@ -709,7 +709,7 @@ namespace {
                                           matlab_round(actual_fs / CutOff) * 2 + 1 +
                                           (4 * static_cast<int>(1.0 + actual_fs / boundary_f0_list[0] / 2.0)));
 
-        // Calculation of the spectrum used for the f0 estimation
+        // Calculation of the spectrum used for the data estimation
         fft_complex *y_spectrum = new fft_complex[fft_size];
         GetSpectrumForEstimation(x, x_length, y_length, actual_fs, fft_size, decimation_ratio, y_spectrum);
 
@@ -733,7 +733,7 @@ namespace {
         double *best_f0_contour = new double[f0_length];
         GetBestF0Contour(f0_length, f0_candidates, f0_scores, number_of_bands, best_f0_contour);
 
-        // Postprocessing to find the best f0-contour.
+        // Postprocessing to find the best data-contour.
         FixF0Contour(frame_period, number_of_bands, fs, f0_candidates, best_f0_contour, f0_length, f0_floor, allowed_range, f0);
 
         delete[] best_f0_contour;
@@ -936,15 +936,15 @@ namespace {
 
 }  // namespace
 
-EstimateF0WithDio::EstimateF0WithDio(double msFramePeriod)
+EstimateF0WithDIO::EstimateF0WithDIO(double msFramePeriod)
         : msFramePeriod(msFramePeriod) {
 }
 
-int EstimateF0WithDio::getF0LengthFor(unsigned int samplingFrequency, unsigned int waveLength) const {
+int EstimateF0WithDIO::getF0LengthFor(unsigned int samplingFrequency, unsigned int waveLength) const {
     return GetSamplesForDIO(samplingFrequency, waveLength, msFramePeriod);
 }
 
-bool EstimateF0WithDio::operator()(F0Contour *output, const Waveform *input) {
+bool EstimateF0WithDIO::operator()(F0Contour *output, const Waveform *input) {
     if(output->length < getF0LengthFor(input->samplingFrequency, input->length)) {
         return false;
     }
@@ -953,9 +953,9 @@ bool EstimateF0WithDio::operator()(F0Contour *output, const Waveform *input) {
     const int speed = 1;
     const double allowedRange = 0.1;
     DioGeneralBody(input->data, input->length, input->samplingFrequency, msFramePeriod,
-            FloorF0, CeilF0, channelsInOctave, speed, allowedRange, t, output->f0);
+            FloorF0, CeilF0, channelsInOctave, speed, allowedRange, t, output->data);
     for (int i = 0; i < output->length; i++)
-        output->f0[i] = GetRefinedF0(input->data, input->length, input->samplingFrequency, t[i], output->f0[i]);
+        output->data[i] = GetRefinedF0(input->data, input->length, input->samplingFrequency, t[i], output->data[i]);
     delete[] t;
     return true;
 }

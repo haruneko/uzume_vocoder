@@ -9,7 +9,7 @@ namespace uzume { namespace dsp {
 
 class F0Contour final {
 public:
-    double *f0;
+    double *data;
     int length;
     double msFramePeriod;
 };

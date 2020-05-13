@@ -12,7 +12,7 @@ const double uzume::dsp::FloorF0 = 71.0;
 const double uzume::dsp::CeilF0 = 800.0;
 const double uzume::dsp::DefaultF0 = 500.0;
 const double uzume::dsp::Log2 = 0.69314718055994529;
-// Maximum standard deviation not to be selected as a best f0.
+// Maximum standard deviation not to be selected as a best data.
 const double uzume::dsp::MaximumValue = 100000.0;
 const double uzume::dsp::DefaultQ1 = -0.15;
 

@@ -7,10 +7,10 @@
 
 namespace uzume { namespace dsp {
 
-class EstimateF0WithDio : public EstimateF0 {
+class EstimateF0WithDIO : public EstimateF0 {
 public:
-    EstimateF0WithDio() = delete;
-    EstimateF0WithDio(double msFramePeriod);
+    EstimateF0WithDIO() = delete;
+    EstimateF0WithDIO(double msFramePeriod);
 
     bool operator()(F0Contour *output, const Waveform *input) override;
     int getF0LengthFor(unsigned int samplingFrequency, unsigned int waveLength) const;

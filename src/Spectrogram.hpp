@@ -25,7 +25,7 @@ public:
     virtual bool pickUpSpectrumAt(Spectrum *destination, double ms) const = 0;
 
     /**
-     * Spectrogram#f0At returns a f0 value of spectrogram at ms[milli seconds].
+     * Spectrogram#f0At returns a data value of spectrogram at ms[milli seconds].
      */
     virtual double f0At(double ms) const = 0;
 

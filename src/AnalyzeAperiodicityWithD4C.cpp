@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <cmath>
 #include "constant.hpp"
-#include "fft.hpp"
 #include "util.hpp"
 
 using namespace uzume::dsp;
@@ -268,6 +267,9 @@ namespace {
                            double current_f0, double current_position, int fft_size,
                            int boundary0, int boundary1, int boundary2,
                            ForwardRealFFT *forward_real_fft, GaussianNoiseGenerator *randn) {
+        if(current_f0 == 0.0) {
+            return 0.0;
+        }
         double *power_spectrum = new double[fft_size];
 
         int window_length = matlab_round(1.5 * fs / current_f0) * 2 + 1;
@@ -323,7 +325,7 @@ AnalyzeAperiodicityWithD4C::AnalyzeAperiodicityWithD4C(unsigned int fftSize, uns
     NuttallWindow(windowSize, nuttallWindow);
 
     frequencyAxis = new double[fftSize / 2 + 1];
-    for(unsigned int i = 0; i <= fftSize / 2 + 1; i++) {
+    for(unsigned int i = 0; i <= fftSize / 2; i++) {
         frequencyAxis[i] = (double)i * samplingFrequency / fftSize;
     }
 }
@@ -343,7 +345,7 @@ int AnalyzeAperiodicityWithD4C::numberOfAperiodicities() const {
 }
 
 int AnalyzeAperiodicityWithD4C::fftSizeForD4C() const {
-    return (int)(pow(2.0, 1.0 + (log(4.0 * samplingFrequency / FloorF0D4C + 1) / Log2)));
+    return (int)(pow(2.0, 1.0 + (int)(log(4.0 * samplingFrequency / FloorF0D4C + 1) / Log2)));
 }
 
 int AnalyzeAperiodicityWithD4C::fftSizeForD4CLoveTrain() const {
@@ -356,8 +358,11 @@ int AnalyzeAperiodicityWithD4C::nuttallWindowSize() const {
 
 bool AnalyzeAperiodicityWithD4C::operator()(Spectrum *output, const InstantWaveform *input) {
     InitializeAperiodicSpectrum(output->aperiodicSpectrum, output->fftSize);
-    double aperiodicity0 = D4CLoveTrainSub(input->wave, samplingFrequency, input->length, input->f0, 0.0, fftSize,
-                                           Boundary0F0 * fftSize / samplingFrequency, Boundary1F0 * fftSize / samplingFrequency, Boundary2F0 * fftSize / samplingFrequency,
+    int fftSizeForAperiodicity0 = fftSizeForD4CLoveTrain();
+    double aperiodicity0 = D4CLoveTrainSub(input->wave, samplingFrequency, input->length, input->f0, 0.0, fftSizeForAperiodicity0,
+                                           Boundary0F0 * fftSizeForAperiodicity0 / samplingFrequency,
+                                           Boundary1F0 * fftSizeForAperiodicity0 / samplingFrequency,
+                                           Boundary2F0 * fftSizeForAperiodicity0 / samplingFrequency,
                                            &forwardRealFFtForD4CLoveTrain, &randn);
     if (input->f0 == 0 || aperiodicity0 <= Threshold) {
         return true;
