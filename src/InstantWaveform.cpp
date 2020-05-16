@@ -8,7 +8,7 @@
 using namespace uzume::dsp;
 
 InstantWaveform::InstantWaveform(unsigned int samplingFrequency)
-        : data(nullptr), samplingFrequency(samplingFrequency) {
+        : data(nullptr), length(0), samplingFrequency(samplingFrequency) {
     length = uzume::dsp::fftSize(samplingFrequency);
     data = (new double[length * 2]) + length;
     f0 = 0.0;

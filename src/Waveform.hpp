@@ -11,9 +11,14 @@ public:
     Waveform(unsigned int length, unsigned int samplingFrequency);
     ~Waveform();
 
+    double msLength() const;
+
     double *data;
     unsigned int length;
     unsigned int samplingFrequency;
+
+    static Waveform *read(const char *filepath);
+    bool save(const char *filepath, int bits = 16) const;
 };
 
 } }

@@ -171,8 +171,8 @@ namespace {
     }
 }  // namespace
 
-AnalyzePeriodicityWithCheapTrick::AnalyzePeriodicityWithCheapTrick(unsigned int fftSize, unsigned int samplingFrequency)
-        : fftSize(fftSize), samplingFrequency(samplingFrequency),
+AnalyzePeriodicityWithCheapTrick::AnalyzePeriodicityWithCheapTrick(unsigned int samplingFrequency)
+        : fftSize(uzume::dsp::fftSize(samplingFrequency)), samplingFrequency(samplingFrequency),
           forwardRealFft({0}), inverseRealFft({0}),
           randn() {
     InitializeForwardRealFFT(fftSize, &forwardRealFft);

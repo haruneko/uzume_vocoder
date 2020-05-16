@@ -17,8 +17,8 @@ namespace uzume { namespace dsp {
 class AnalyzeAperiodicityWithD4C final : public AnalyzeAperiodicity {
 public:
     AnalyzeAperiodicityWithD4C() = delete;
-    AnalyzeAperiodicityWithD4C(unsigned int fftSize, unsigned int samplingFrequency);
-    ~AnalyzeAperiodicityWithD4C();
+    explicit AnalyzeAperiodicityWithD4C(unsigned int samplingFrequency);
+    ~AnalyzeAperiodicityWithD4C() final;
 
     /**
      * () analyzes input with D4C and sets its aperiodic spectrum into output.

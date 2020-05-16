@@ -293,8 +293,8 @@ namespace {
     }
 }  // namespace
 
-AnalyzeAperiodicityWithD4C::AnalyzeAperiodicityWithD4C(unsigned int fftSize, unsigned int samplingFrequency)
-        : fftSize(fftSize), samplingFrequency(samplingFrequency),
+AnalyzeAperiodicityWithD4C::AnalyzeAperiodicityWithD4C(unsigned int samplingFrequency)
+        : fftSize(uzume::dsp::fftSize(samplingFrequency)), samplingFrequency(samplingFrequency),
           forwardRealFft({0}), inverseRealFft({0}),
           coarseAperiodicity(nullptr), coarseFrequencyAxis(nullptr), frequencyAxis(nullptr), nuttallWindow(nullptr),
           forwardRealFFtForD4CLoveTrain({0}),

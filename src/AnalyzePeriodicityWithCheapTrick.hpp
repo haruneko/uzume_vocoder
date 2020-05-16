@@ -15,8 +15,8 @@ namespace uzume { namespace dsp {
 class AnalyzePeriodicityWithCheapTrick final : public AnalyzePeriodicity {
 public:
     AnalyzePeriodicityWithCheapTrick() = delete;
-    AnalyzePeriodicityWithCheapTrick(unsigned int fftSize, unsigned int samplingFrequency);
-    ~AnalyzePeriodicityWithCheapTrick();
+    explicit AnalyzePeriodicityWithCheapTrick(unsigned int samplingFrequency);
+    ~AnalyzePeriodicityWithCheapTrick() final;
 
     /**
      * () analyze input with Cheap Trick and puts its periodic spectrum into output.

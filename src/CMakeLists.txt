@@ -17,6 +17,7 @@ target_sources(uzume_dsp
         PRIVATE
         AnalyzeAperiodicityWithD4C.cpp
         AnalyzePeriodicityWithCheapTrick.cpp
+        audioio.cpp
         constant.cpp
         Contour.cpp
         EstimateF0WithDIO.cpp
@@ -30,7 +31,8 @@ target_sources(uzume_dsp
         SynthesizePhrase.cpp
         SynthesizePhraseWithWORLD.cpp
         util.cpp
-        Waveform.cpp)
+        Waveform.cpp
+        WaveformSpectrogram.cpp)
 set_property(TARGET uzume_dsp
         PROPERTY PUBLIC_HEADER
         AnalyzeAperiodicity.hpp
@@ -52,7 +54,8 @@ set_property(TARGET uzume_dsp
         SynthesizePhrase.hpp
         SynthesizePhraseWithWORLD.hpp
         util.hpp
-        Waveform.hpp)
+        Waveform.hpp
+        WaveformSpectrogram.hpp)
 target_include_directories(uzume_dsp
         INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
