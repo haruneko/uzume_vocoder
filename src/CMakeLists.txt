@@ -18,10 +18,12 @@ target_sources(uzume_dsp
         AnalyzeAperiodicityWithD4C.cpp
         AnalyzePeriodicityWithCheapTrick.cpp
         constant.cpp
+        Contour.cpp
         EstimateF0WithDIO.cpp
         fft.cpp
         GaussianNoiseGenerator.cpp
         ImpulseResponse.cpp
+        InstantWaveform.cpp
         NaiveSpectrogram.cpp
         Spectrum.cpp
         SynthesizeImpulseResponseWithWORLD.cpp
@@ -35,6 +37,7 @@ set_property(TARGET uzume_dsp
         AnalyzeAperiodicityWithD4C.hpp
         AnalyzePeriodicity.hpp
         AnalyzePeriodicityWithCheapTrick.hpp
+        Contour.hpp
         EstimateF0.hpp
         EstimateF0WithDIO.hpp
         fft.hpp

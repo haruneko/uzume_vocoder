@@ -168,3 +168,7 @@ void uzume::dsp::interp1(const double *x, const double *y, int x_length, const d
     delete[] p;
     delete[] h;
 }
+
+int uzume::dsp::fftSize(unsigned int samplingFrequency) {
+    return (int)pow(2.0, 1.0 + (int)(log(3.0 * samplingFrequency / 71.0 + 1) / Log2));
+}

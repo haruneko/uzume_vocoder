@@ -186,7 +186,7 @@ AnalyzePeriodicityWithCheapTrick::~AnalyzePeriodicityWithCheapTrick() noexcept {
 
 bool AnalyzePeriodicityWithCheapTrick::operator()(Spectrum *output, const InstantWaveform *input) {
     double f0 = input->f0 <= GetF0FloorForCheapTrick(input->samplingFrequency, output->fftSize) ? DefaultF0 : input->f0;
-    CheapTrickGeneralBody(input->wave, input->samplingFrequency, f0, output->fftSize,
-                          DefaultQ1, &forwardRealFft,&inverseRealFft, output->periodicSpectrum, &randn);
+    CheapTrickGeneralBody(input->data, input->samplingFrequency, f0, output->fftSize,
+                          DefaultQ1, &forwardRealFft, &inverseRealFft, output->periodicSpectrum, &randn);
     return true;
 }

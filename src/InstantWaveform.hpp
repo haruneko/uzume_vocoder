@@ -6,9 +6,12 @@
 
 namespace uzume { namespace dsp {
 
-class InstantWaveform {
+class InstantWaveform final {
 public:
-    double *wave;
+    InstantWaveform(unsigned int samplingFrequency);
+    ~InstantWaveform();
+
+    double *data;
     double f0;
     unsigned int length;
     unsigned int samplingFrequency;

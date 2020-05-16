@@ -944,7 +944,7 @@ int EstimateF0WithDIO::getF0LengthFor(unsigned int samplingFrequency, unsigned i
     return GetSamplesForDIO(samplingFrequency, waveLength, msFramePeriod);
 }
 
-bool EstimateF0WithDIO::operator()(F0Contour *output, const Waveform *input) {
+bool EstimateF0WithDIO::operator()(Contour *output, const Waveform *input) {
     if(output->length < getF0LengthFor(input->samplingFrequency, input->length)) {
         return false;
     }

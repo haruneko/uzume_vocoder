@@ -359,7 +359,7 @@ int AnalyzeAperiodicityWithD4C::nuttallWindowSize() const {
 bool AnalyzeAperiodicityWithD4C::operator()(Spectrum *output, const InstantWaveform *input) {
     InitializeAperiodicSpectrum(output->aperiodicSpectrum, output->fftSize);
     int fftSizeForAperiodicity0 = fftSizeForD4CLoveTrain();
-    double aperiodicity0 = D4CLoveTrainSub(input->wave, samplingFrequency, input->length, input->f0, 0.0, fftSizeForAperiodicity0,
+    double aperiodicity0 = D4CLoveTrainSub(input->data, samplingFrequency, input->length, input->f0, 0.0, fftSizeForAperiodicity0,
                                            Boundary0F0 * fftSizeForAperiodicity0 / samplingFrequency,
                                            Boundary1F0 * fftSizeForAperiodicity0 / samplingFrequency,
                                            Boundary2F0 * fftSizeForAperiodicity0 / samplingFrequency,
@@ -367,7 +367,7 @@ bool AnalyzeAperiodicityWithD4C::operator()(Spectrum *output, const InstantWavef
     if (input->f0 == 0 || aperiodicity0 <= Threshold) {
         return true;
     }
-    D4CGeneralBody(input->wave, input->length, samplingFrequency, myMax<double>(FloorF0D4C, input->f0),
+    D4CGeneralBody(input->data, input->length, samplingFrequency, myMax<double>(FloorF0D4C, input->f0),
                    fftSizeForD4C(), 0.0, numberOfAperiodicities(), nuttallWindow,
                    nuttallWindowSize(), &forwardRealFft, &coarseAperiodicity[1], &randn);
 

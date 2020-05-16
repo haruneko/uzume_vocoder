@@ -18,7 +18,7 @@ public:
     /**
      * () estimates f0 with DIO and Stone mask.
      */
-    bool operator()(F0Contour *output, const Waveform *input) override;
+    bool operator()(Contour *output, const Waveform *input) override;
 
     int getF0LengthFor(unsigned int samplingFrequency, unsigned int waveLength) const;
 private:

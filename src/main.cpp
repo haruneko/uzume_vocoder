@@ -36,10 +36,7 @@ int main()
 
     /* Analyze and create WORLD spectrogram here. */
     EstimateF0WithDIO dio(2.0);
-    F0Contour f0;
-    f0.length = dio.getF0LengthFor(waveform.samplingFrequency, waveform.length);
-    f0.msFramePeriod = 2.0;
-    f0.data = new double[f0.length];
+    Contour f0(1000.0 * (double)waveform.length / waveform.samplingFrequency, 2.0);
     dio(&f0, &waveform);
 
     NaiveSpectrogram spectrogram((unsigned int)f0.length, (unsigned int)fftSize, f0.msFramePeriod);

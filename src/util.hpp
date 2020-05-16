@@ -30,6 +30,8 @@ void DCCorrection(const double *input, double f0, int fs, int fft_size, double *
 void LinearSmoothing(const double *input, double width, int fs, int fft_size, double *output);
 
 void NuttallWindow(int y_length, double *y);
+
+int fftSize(unsigned int samplingFrequency);
 } }
 
 #endif //UZUME_DSP_UTIL_HPP

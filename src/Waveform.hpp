@@ -8,6 +8,9 @@ namespace uzume { namespace dsp {
 
 class Waveform {
 public:
+    Waveform(unsigned int length, unsigned int samplingFrequency);
+    ~Waveform();
+
     double *data;
     unsigned int length;
     unsigned int samplingFrequency;
