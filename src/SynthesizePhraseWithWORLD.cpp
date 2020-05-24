@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 #include <algorithm>
+#include <cstdio>
 
 #include "constant.hpp"
 #include "SynthesizePhraseWithWORLD.hpp"
@@ -48,7 +49,13 @@ bool SynthesizePhraseWithWORLD::operator()(PhraseSignal *output, PhraseParameter
             frameBuffer.VUV = previousVUV;
             frameBuffer.noiseSize = i - previousPulseIndex;
             frameBuffer.secondsFractionalTimeShift = previousFractionalTimeShift;
-            input->spectrogram->pickUpSpectrumAt(frameBuffer.spectrum, (double) previousPulseIndex / samplingFrequency * 1000.0);
+            input->spectrogram->pickUpSpectrumAt(frameBuffer.spectrum, ms);
+            // calculate safe aperiodicity ratio.
+            for(unsigned int i = 0; i <= fftSize / 2; i++) {
+                double safeValue = std::max<double>(0.001, std::min<double>(0.999999999999, frameBuffer.spectrum->aperiodicSpectrum[i]));
+                frameBuffer.spectrum->aperiodicSpectrum[i] = pow(safeValue, 2.0);
+            }
+            printf("[Synthesize] %d[frame] %f[aperiodicity0]\n", i, frameBuffer.spectrum->aperiodicSpectrum[0]);
 
             (*synthesize)(&responseBuffer, &frameBuffer);
             int waveIndexOffset = previousPulseIndex - fftSize / 2 + 1;

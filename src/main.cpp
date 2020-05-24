@@ -2,84 +2,33 @@
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.#include <stdio.h>
 #include <algorithm>
-#include <cmath>
 
-#include "constant.hpp"
-#include "AnalyzeAperiodicityWithD4C.hpp"
-#include "AnalyzePeriodicityWithCheapTrick.hpp"
-#include "EstimateF0WithDIO.hpp"
-#include "NaiveSpectrogram.hpp"
 #include "SynthesizeImpulseResponseWithWORLD.hpp"
 #include "SynthesizePhraseWithWORLD.hpp"
+#include "Waveform.hpp"
+#include "WaveformSpectrogram.hpp"
 
 using namespace uzume::dsp;
 
-// implement wave read, write function.
-int GetAudioLength(const char*);
-void wavread(const char*, int*, int*, double*);
-void wavwrite(const double*, int, int, int, const char*);
-
 // This is a sample to use dsp directory.
-int main()
-{
-
+int main() {
     const char *inputPath = "/path/to/input.wav";
     const char *outputPath = "/path/to/output.wav";
-    Waveform waveform;
-    waveform.length = GetAudioLength(inputPath);
-    waveform.data = new double[waveform.length];
-    int waveLength, samplingFrequency, samplingBits;
-    wavread(inputPath, &samplingFrequency, &samplingBits, waveform.data);
-    waveform.samplingFrequency = samplingFrequency;
+    Waveform *input = Waveform::read(inputPath);
+    Waveform *output = new Waveform(input->length, input->samplingFrequency);
+    WaveformSpectrogram spectrogram(input);
 
-    int fftSize = pow(2.0, 1.0 + (int)(log(3.0 * waveform.samplingFrequency / 71.0 + 1) / Log2));
-
-    /* Analyze and create WORLD spectrogram here. */
-    EstimateF0WithDIO dio(2.0);
-    Contour f0(1000.0 * (double)waveform.length / waveform.samplingFrequency, 2.0);
-    dio(&f0, &waveform);
-
-    NaiveSpectrogram spectrogram((unsigned int)f0.length, (unsigned int)fftSize, f0.msFramePeriod);
-
-    for(int i = 0; i < f0.length; i++) {
-        spectrogram.f0Contour[i] = f0.data[i];
-    }
-
-    AnalyzeAperiodicityWithD4C d4c(fftSize, samplingFrequency);
-    AnalyzePeriodicityWithCheapTrick cheapTrick(fftSize, samplingFrequency);
-    InstantWaveform iw;
-    Spectrum sp(fftSize);
-    iw.wave = new double[fftSize * 2] + fftSize;
-    iw.samplingFrequency = waveform.samplingFrequency;
-    iw.length = fftSize * 2;
-    for(int i = 0; i < f0.length; i++) {
-        int index = i * f0.msFramePeriod / 1000.0 * waveform.samplingFrequency;
-        iw.f0 = f0.data[i];
-        for(int wi = -fftSize; wi < fftSize; wi++) {
-            iw.wave[wi] = (index + wi < 0) ? 0.0 :
-                                    (index + wi >= waveform.length) ? 0.0 :
-                                    waveform.data[index + wi];
-        }
-        cheapTrick(&sp, &iw);
-        d4c(&sp, &iw);
-        for(int j = 0; j <= sp.fftSize / 2; j++) {
-            spectrogram.periodicSpecgram[i][j] = sp.periodicSpectrum[j];
-            spectrogram.aperiodicSpecgram[i][j] = sp.aperiodicSpectrum[j];
-        }
-    }
-    delete[] (iw.wave - fftSize);
-
-    for(int i = 0; i < waveform.length; i++) {
-        waveform.data[i] = 0.0;
-    }
-    SynthesizeImpulseResponseWithWORLD irs(spectrogram.fftSize(), samplingFrequency);
+    SynthesizeImpulseResponseWithWORLD irs(spectrogram.fftSize(), input->samplingFrequency);
     SynthesizePhraseWithWORLD synthesize(&irs);
 
-    PhraseSignal s(waveform.data, /* indexMin = */ 0, /* indexMax = */ waveform.length, samplingFrequency);
+    for(unsigned int i = 0; i < output->length; i++) {
+        output->data[i] = 0.0;
+    }
+
+    PhraseSignal s(output->data, /* indexMin = */ 0, /* indexMax = */ output->length, output->samplingFrequency);
     PhraseParameters p(&spectrogram, /* startPhase = */ 0.0, /* startFractionalTimeShift = */ 0.0);
 
     synthesize(&s, &p);
 
-    /* Save wave as wav file here. */
-    wavwrite(waveform.data, waveform.length, waveform.samplingFrequency, 16, outputPath);
+    output->save(outputPath);
 }

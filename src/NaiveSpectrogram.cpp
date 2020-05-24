@@ -69,8 +69,7 @@ bool NaiveSpectrogram::pickUpSpectrumAt(Spectrum *destination, double ms) const 
     }
     for (unsigned int i = 0; i <= _fftSize / 2; i++) {
         destination->aperiodicSpectrum[i] =
-                pow(safeAperiodicity(aperiodicSpecgram[currentFrameIndexFloor][i]) * (1.0 - interpolation) +
-                    safeAperiodicity(aperiodicSpecgram[currentFrameIndexCeil][i]) * interpolation, 2.0);
+                aperiodicSpecgram[currentFrameIndexFloor][i] * (1.0 - interpolation) + aperiodicSpecgram[currentFrameIndexCeil][i] * interpolation;
     }
     return true;
 }

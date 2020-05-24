@@ -14,6 +14,7 @@ namespace uzume { namespace dsp {
 class WaveformSpectrogram final : public Spectrogram {
 public:
     explicit WaveformSpectrogram(Waveform *waveform);
+    ~WaveformSpectrogram() final;
 
     bool pickUpSpectrumAt(Spectrum *destination, double ms) const override ;
 

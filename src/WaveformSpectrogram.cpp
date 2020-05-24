@@ -5,7 +5,6 @@
 #include "AnalyzeAperiodicityWithD4C.hpp"
 #include "AnalyzePeriodicity.hpp"
 #include "EstimateF0WithDIO.hpp"
-#include "InstantWaveform.hpp"
 #include "util.hpp"
 #include "WaveformSpectrogram.hpp"
 #include "AnalyzePeriodicityWithCheapTrick.hpp"
@@ -23,7 +22,15 @@ WaveformSpectrogram::WaveformSpectrogram(Waveform *waveform)
     f0 = new Contour(waveform->msLength(), msFramePeriod);
     dio(f0, waveform);
 
-    iw = new InstantWaveform(uzume::dsp::fftSize(waveform->samplingFrequency));
+    iw = new InstantWaveform(waveform->samplingFrequency);
+}
+
+WaveformSpectrogram::~WaveformSpectrogram() noexcept {
+    delete analyzeAperiodicity;
+    delete analyzePeriodicity;
+    delete waveform;
+    delete f0;
+    delete iw;
 }
 
 unsigned int WaveformSpectrogram::fftSize() const {
@@ -39,9 +46,9 @@ double WaveformSpectrogram::f0At(double ms) const {
 }
 
 bool WaveformSpectrogram::pickUpSpectrumAt(Spectrum *destination, double ms) const {
-    int origin = (int)(ms / 1000.0 * waveform->samplingFrequency);
-    for(int i = -(int)fftSize(); i < (int)fftSize(); i++) {
-        int waveIndex = std::max(0, std::min((int)waveform->length - 1, origin + i));
+    int origin = (int) (ms / 1000.0 * waveform->samplingFrequency);
+    for (int i = -(int) fftSize(); i < (int) fftSize(); i++) {
+        int waveIndex = std::max(0, std::min((int) waveform->length - 1, origin + i));
         iw->data[i] = waveform->data[waveIndex];
     }
     iw->f0 = f0At(ms);
