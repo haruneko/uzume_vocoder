@@ -13,6 +13,10 @@
 
 namespace uzume { namespace dsp {
 
+/**
+ * WaveformSpectrogram is an implementation of Spectrogram.
+ * This class treat waveform as spectrogram with WORLD analysis algorithm.
+ */
 class WaveformSpectrogram final : public Spectrogram {
 public:
     static const std::function<AnalyzeAperiodicity *(unsigned int)> DefaultAperiodicAnalysisFactory;
