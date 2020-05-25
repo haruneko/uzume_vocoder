@@ -11,16 +11,32 @@
 
 using namespace uzume::dsp;
 
-WaveformSpectrogram::WaveformSpectrogram(Waveform *waveform)
+const std::function<AnalyzeAperiodicity *(unsigned int)> WaveformSpectrogram::DefaultAperiodicAnalysisFactory = [](unsigned int fftSize) {
+    return new AnalyzeAperiodicityWithD4C(fftSize);
+};
+
+const std::function<AnalyzePeriodicity *(unsigned int)> WaveformSpectrogram::DefaultPeriodicAnalysisFactory = [](unsigned int fftSize) {
+    return new AnalyzePeriodicityWithCheapTrick(fftSize);
+};
+
+const std::function<EstimateF0 *(double)> WaveformSpectrogram::DefaultF0EstimationFactory = [](double msFramePeriod) {
+    return new EstimateF0WithDIO(msFramePeriod);
+};
+
+WaveformSpectrogram::WaveformSpectrogram(Waveform *waveform,
+        const std::function<AnalyzeAperiodicity *(unsigned int)> &aperiodicAnalysisFactory,
+        const std::function<AnalyzePeriodicity *(unsigned int)> &periodicAnalysisFactory,
+        const std::function<EstimateF0 *(double)> &f0EstimationFactory)
         : analyzeAperiodicity(nullptr), analyzePeriodicity(nullptr), waveform(waveform), f0(nullptr), iw(nullptr) {
-    // FIXME: needs DI to new those analysis classes.
-    analyzeAperiodicity = new AnalyzeAperiodicityWithD4C(waveform->samplingFrequency);
-    analyzePeriodicity = new AnalyzePeriodicityWithCheapTrick(waveform->samplingFrequency);
+
+    analyzeAperiodicity = aperiodicAnalysisFactory(waveform->samplingFrequency);
+    analyzePeriodicity = periodicAnalysisFactory(waveform->samplingFrequency);
     double msFramePeriod = 2.0;
 
-    EstimateF0WithDIO dio(msFramePeriod);
+    auto f0Estimation = f0EstimationFactory(msFramePeriod);
     f0 = new Contour(waveform->msLength(), msFramePeriod);
-    dio(f0, waveform);
+    (*f0Estimation)(f0, waveform);
+    delete f0Estimation;
 
     iw = new InstantWaveform(waveform->samplingFrequency);
 }
