@@ -64,4 +64,4 @@ install(TARGETS uzume_dsp
         EXPORT libuzume_dsp
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
-        PUBLIC_HEADER DESTINATION include)
+        PUBLIC_HEADER DESTINATION include/dsp)
