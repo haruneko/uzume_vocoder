@@ -1,51 +1,60 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_DSP_WAVEFORMSPECTROGRAM_HPP
-#define UZUME_DSP_WAVEFORMSPECTROGRAM_HPP
+#ifndef UZUME_DSP_WAVEFORM_SPECTROGRAM_HPP
+#define UZUME_DSP_WAVEFORM_SPECTROGRAM_HPP
 
 #include <functional>
+
 #include "AnalyzeAperiodicity.hpp"
 #include "AnalyzePeriodicity.hpp"
 #include "Contour.hpp"
+#include "EstimateF0.hpp"
+#include "InstantWaveform.hpp"
 #include "Spectrogram.hpp"
 #include "Waveform.hpp"
 
-namespace uzume { namespace dsp {
+namespace uzume {
+    namespace dsp {
 
-/**
- * WaveformSpectrogram is an implementation of Spectrogram.
- * This class treat waveform as spectrogram with WORLD analysis algorithm.
- */
-class WaveformSpectrogram final : public Spectrogram {
-public:
-    static const std::function<AnalyzeAperiodicity *(unsigned int)> DefaultAperiodicAnalysisFactory;
-    static const std::function<AnalyzePeriodicity *(unsigned int)> DefaultPeriodicAnalysisFactory;
-    static const std::function<EstimateF0 *(double)> DefaultF0EstimationFactory;
+        /**
+         * WaveformSpectrogram is an implementation of Spectrogram.
+         * This class treat waveform as spectrogram with WORLD analysis algorithm.
+         */
+        class WaveformSpectrogram final : public Spectrogram {
+        public:
+            static const std::function<AnalyzeAperiodicity *(unsigned int)> DefaultAperiodicAnalysisFactory;
+            static const std::function<AnalyzePeriodicity *(unsigned int)> DefaultPeriodicAnalysisFactory;
+            static const std::function<EstimateF0 *(double)> DefaultF0EstimationFactory;
 
-    explicit WaveformSpectrogram(Waveform *waveform,
-        const std::function<AnalyzeAperiodicity *(unsigned int)> &aperiodicAnalysisFactory = DefaultAperiodicAnalysisFactory,
-        const std::function<AnalyzePeriodicity *(unsigned int)> &periodicAnalysisFactory = DefaultPeriodicAnalysisFactory,
-        const std::function<EstimateF0 *(double)> &f0EstimationFactory = DefaultF0EstimationFactory);
-    ~WaveformSpectrogram() final;
+            explicit WaveformSpectrogram(Waveform *waveform,
+                                         const std::function<AnalyzeAperiodicity *(
+                                                 unsigned int)> &aperiodicAnalysisFactory = DefaultAperiodicAnalysisFactory,
+                                         const std::function<AnalyzePeriodicity *(
+                                                 unsigned int)> &periodicAnalysisFactory = DefaultPeriodicAnalysisFactory,
+                                         const std::function<EstimateF0 *(
+                                                 double)> &f0EstimationFactory = DefaultF0EstimationFactory);
 
-    bool pickUpSpectrumAt(Spectrum *destination, double ms) const override ;
+            ~WaveformSpectrogram() final;
 
-    double f0At(double ms) const override ;
+            bool pickUpSpectrumAt(Spectrum *destination, double ms) const override;
 
-    double msLength() const override ;
+            double f0At(double ms) const override;
 
-    unsigned int fftSize() const override ;
+            double msLength() const override;
 
-private:
-    AnalyzeAperiodicity *analyzeAperiodicity;
-    AnalyzePeriodicity *analyzePeriodicity;
-    Waveform *waveform;
-    Contour *f0;
+            unsigned int fftSize() const override;
 
-    InstantWaveform *iw;
-};
+        private:
+            AnalyzeAperiodicity *analyzeAperiodicity;
+            AnalyzePeriodicity *analyzePeriodicity;
+            Waveform *waveform;
+            Contour *f0;
 
-} }
+            InstantWaveform *iw;
+        };
 
-#endif //UZUME_DSP_WAVEFORMSPECTROGRAM_HPP
+    }
+}
+
+#endif //UZUME_DSP_WAVEFORM_SPECTROGRAM_HPP
