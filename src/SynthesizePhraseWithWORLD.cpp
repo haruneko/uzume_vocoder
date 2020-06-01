@@ -58,8 +58,9 @@ bool SynthesizePhraseWithWORLD::operator()(PhraseSignal *output, PhraseParameter
             (*synthesize)(&responseBuffer, &frameBuffer);
             int waveIndexOffset = previousPulseIndex - fftSize / 2 + 1;
             double *impulseResponse = responseBuffer.data();
-            int begin = std::max(-waveIndexOffset + output->indexMin, 0);
-            int end = std::min((unsigned int)(output->indexMax - waveIndexOffset), fftSize);
+            int begin = std::max(std::max(-waveIndexOffset + output->indexMin, 0), -waveIndexOffset);
+
+            int end = std::min(std::min(output->indexMax - waveIndexOffset, (int)fftSize), (int)waveLength - waveIndexOffset);
             for (int responseIndex = begin; responseIndex < end; ++responseIndex) {
                 int waveIndex = responseIndex + waveIndexOffset;
                 wave[waveIndex] += impulseResponse[responseIndex];
