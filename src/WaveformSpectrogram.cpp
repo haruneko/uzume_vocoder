@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "AnalyzeAperiodicityWithD4C.hpp"
 #include "AnalyzePeriodicity.hpp"
+#include "constant.hpp"
 #include "EstimateF0WithDIO.hpp"
 #include "util.hpp"
 #include "WaveformSpectrogram.hpp"
@@ -11,12 +12,12 @@
 
 using namespace uzume::dsp;
 
-const std::function<AnalyzeAperiodicity *(unsigned int)> WaveformSpectrogram::DefaultAperiodicAnalysisFactory = [](unsigned int fftSize) {
-    return new AnalyzeAperiodicityWithD4C(fftSize);
+const std::function<AnalyzeAperiodicity *(unsigned int)> WaveformSpectrogram::DefaultAperiodicAnalysisFactory = [](unsigned int samplingFrequency) {
+    return new AnalyzeAperiodicityWithD4C(samplingFrequency);
 };
 
-const std::function<AnalyzePeriodicity *(unsigned int)> WaveformSpectrogram::DefaultPeriodicAnalysisFactory = [](unsigned int fftSize) {
-    return new AnalyzePeriodicityWithCheapTrick(fftSize);
+const std::function<AnalyzePeriodicity *(unsigned int)> WaveformSpectrogram::DefaultPeriodicAnalysisFactory = [](unsigned int samplingFrequency) {
+    return new AnalyzePeriodicityWithCheapTrick(samplingFrequency);
 };
 
 const std::function<EstimateF0 *(double)> WaveformSpectrogram::DefaultF0EstimationFactory = [](double msFramePeriod) {
@@ -58,7 +59,8 @@ double WaveformSpectrogram::msLength() const {
 }
 
 double WaveformSpectrogram::f0At(double ms) const {
-    return f0->at(ms);
+    double f = f0->at(ms);
+    return f < FloorF0 ? 0.0 : f
 }
 
 bool WaveformSpectrogram::pickUpSpectrumAt(Spectrum *destination, double ms) const {
