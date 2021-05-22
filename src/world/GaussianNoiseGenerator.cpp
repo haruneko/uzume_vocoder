@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 #include "GaussianNoiseGenerator.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::dsp::world;
 
 GaussianNoiseGenerator::GaussianNoiseGenerator() {
     reset();

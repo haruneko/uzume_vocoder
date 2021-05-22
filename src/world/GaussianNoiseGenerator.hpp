@@ -6,7 +6,7 @@
 
 #include <stdint.h>
 
-namespace uzume { namespace dsp {
+namespace uzume { namespace dsp { namespace world {
 
 /**
  * GaussianNoiseGenerator is a simple C++ implementation of `randn` function in WORLD (https://github.com/mmorise/World/).
@@ -29,6 +29,6 @@ private:
     uint32_t w;
 };
 
-} }
+} } }
 
 #endif

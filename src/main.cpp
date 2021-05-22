@@ -3,8 +3,8 @@
 // license that can be found in the LICENSE file.#include <stdio.h>
 #include <algorithm>
 
-#include "SynthesizeImpulseResponseWithWORLD.hpp"
-#include "SynthesizePhraseWithWORLD.hpp"
+#include "world/SynthesizeImpulseResponseWithWORLD.hpp"
+#include "world/SynthesizePhraseWithWORLD.hpp"
 #include "Waveform.hpp"
 #include "WaveformSpectrogram.hpp"
 

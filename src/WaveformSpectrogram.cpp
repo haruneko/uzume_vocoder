@@ -2,15 +2,16 @@
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
 #include <algorithm>
-#include "AnalyzeAperiodicityWithD4C.hpp"
+#include "world/AnalyzeAperiodicityWithD4C.hpp"
 #include "AnalyzePeriodicity.hpp"
-#include "constant.hpp"
-#include "EstimateF0WithDIO.hpp"
-#include "util.hpp"
+#include "world/constant.hpp"
+#include "world/EstimateF0WithDIO.hpp"
+#include "world/util.hpp"
 #include "WaveformSpectrogram.hpp"
-#include "AnalyzePeriodicityWithCheapTrick.hpp"
+#include "world/AnalyzePeriodicityWithCheapTrick.hpp"
 
 using namespace uzume::dsp;
+using namespace uzume::dsp::world;
 
 const std::function<AnalyzeAperiodicity *(unsigned int)> WaveformSpectrogram::DefaultAperiodicAnalysisFactory = [](unsigned int samplingFrequency) {
     return new AnalyzeAperiodicityWithD4C(samplingFrequency);
@@ -51,7 +52,7 @@ WaveformSpectrogram::~WaveformSpectrogram() noexcept {
 }
 
 unsigned int WaveformSpectrogram::fftSize() const {
-    return uzume::dsp::fftSize(waveform->samplingFrequency);
+    return uzume::dsp::world::fftSize(waveform->samplingFrequency);
 }
 
 double WaveformSpectrogram::msLength() const {
@@ -60,7 +61,7 @@ double WaveformSpectrogram::msLength() const {
 
 double WaveformSpectrogram::f0At(double ms) const {
     double f = f0->at(ms);
-    return f < FloorF0 ? 0.0 : f
+    return f < FloorF0 ? 0.0 : f;
 }
 
 bool WaveformSpectrogram::pickUpSpectrumAt(Spectrum *destination, double ms) const {

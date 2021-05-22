@@ -15,45 +15,45 @@ target_compile_options(uzume_dsp
         -Wall -Wextra -Wno-long-long -pedantic)
 target_sources(uzume_dsp
         PRIVATE
-        AnalyzeAperiodicityWithD4C.cpp
-        AnalyzePeriodicityWithCheapTrick.cpp
-        audioio.cpp
-        constant.cpp
+        world/AnalyzeAperiodicityWithD4C.cpp
+        world/AnalyzePeriodicityWithCheapTrick.cpp
+        world/audioio.cpp
+        world/constant.cpp
         Contour.cpp
-        EstimateF0WithDIO.cpp
-        fft.cpp
-        GaussianNoiseGenerator.cpp
+        world/EstimateF0WithDIO.cpp
+        world/fft.cpp
+        world/GaussianNoiseGenerator.cpp
         ImpulseResponse.cpp
         InstantWaveform.cpp
         NaiveSpectrogram.cpp
         Spectrum.cpp
-        SynthesizeImpulseResponseWithWORLD.cpp
+        world/SynthesizeImpulseResponseWithWORLD.cpp
         SynthesizePhrase.cpp
-        SynthesizePhraseWithWORLD.cpp
-        util.cpp
+        world/SynthesizePhraseWithWORLD.cpp
+        world/util.cpp
         Waveform.cpp
         WaveformSpectrogram.cpp)
 set_property(TARGET uzume_dsp
         PROPERTY PUBLIC_HEADER
         AnalyzeAperiodicity.hpp
-        AnalyzeAperiodicityWithD4C.hpp
+        world/AnalyzeAperiodicityWithD4C.hpp
         AnalyzePeriodicity.hpp
-        AnalyzePeriodicityWithCheapTrick.hpp
+        world/AnalyzePeriodicityWithCheapTrick.hpp
         Contour.hpp
         EstimateF0.hpp
-        EstimateF0WithDIO.hpp
-        fft.hpp
-        GaussianNoiseGenerator.hpp
+        world/EstimateF0WithDIO.hpp
+        world/fft.hpp
+        world/GaussianNoiseGenerator.hpp
         ImpulseResponse.hpp
         InstantWaveform.hpp
         NaiveSpectrogram.hpp
         Spectrogram.hpp
         Spectrum.hpp
         SynthesizeImpulseResponse.hpp
-        SynthesizeImpulseResponseWithWORLD.hpp
+        world/SynthesizeImpulseResponseWithWORLD.hpp
         SynthesizePhrase.hpp
-        SynthesizePhraseWithWORLD.hpp
-        util.hpp
+        world/SynthesizePhraseWithWORLD.hpp
+        world/util.hpp
         Waveform.hpp
         WaveformSpectrogram.hpp)
 target_include_directories(uzume_dsp

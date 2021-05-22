@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 #include "NaiveSpectrogram.hpp"
-#include "util.hpp"
+#include "world/util.hpp"
 
 using namespace uzume::dsp;
 
