@@ -19,43 +19,43 @@ target_sources(uzume_dsp
         world/AnalyzePeriodicityWithCheapTrick.cpp
         world/audioio.cpp
         world/constant.cpp
-        Contour.cpp
+        data/Contour.cpp
         world/EstimateF0WithDIO.cpp
         world/fft.cpp
         world/GaussianNoiseGenerator.cpp
-        ImpulseResponse.cpp
-        InstantWaveform.cpp
-        NaiveSpectrogram.cpp
-        Spectrum.cpp
+        data/ImpulseResponse.cpp
+        data/InstantWaveform.cpp
+        spectrogram/NaiveSpectrogram.cpp
+        data/Spectrum.cpp
         world/SynthesizeImpulseResponseWithWORLD.cpp
-        SynthesizePhrase.cpp
-        world/SynthesizePhraseWithWORLD.cpp
+        SynthesizeSegment.cpp
+        world/SynthesizeSegmentWithWORLD.cpp
         world/util.cpp
-        Waveform.cpp
-        WaveformSpectrogram.cpp)
+        data/Waveform.cpp
+        spectrogram/WaveformSpectrogram.cpp)
 set_property(TARGET uzume_dsp
         PROPERTY PUBLIC_HEADER
         AnalyzeAperiodicity.hpp
         world/AnalyzeAperiodicityWithD4C.hpp
         AnalyzePeriodicity.hpp
         world/AnalyzePeriodicityWithCheapTrick.hpp
-        Contour.hpp
+        data/Contour.hpp
         EstimateF0.hpp
         world/EstimateF0WithDIO.hpp
         world/fft.hpp
         world/GaussianNoiseGenerator.hpp
-        ImpulseResponse.hpp
-        InstantWaveform.hpp
-        NaiveSpectrogram.hpp
+        data/ImpulseResponse.hpp
+        data/InstantWaveform.hpp
+        spectrogram/NaiveSpectrogram.hpp
         Spectrogram.hpp
-        Spectrum.hpp
+        data/Spectrum.hpp
         SynthesizeImpulseResponse.hpp
         world/SynthesizeImpulseResponseWithWORLD.hpp
-        SynthesizePhrase.hpp
-        world/SynthesizePhraseWithWORLD.hpp
+        SynthesizeSegment.hpp
+        world/SynthesizeSegmentWithWORLD.hpp
         world/util.hpp
-        Waveform.hpp
-        WaveformSpectrogram.hpp)
+        data/Waveform.hpp
+        spectrogram/WaveformSpectrogram.hpp)
 target_include_directories(uzume_dsp
         INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>

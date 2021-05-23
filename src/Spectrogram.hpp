@@ -4,7 +4,7 @@
 #ifndef __DSP_SPECTROGRAM_HPP__
 #define __DSP_SPECTROGRAM_HPP__
 
-#include "Spectrum.hpp"
+#include "data/Spectrum.hpp"
 
 namespace uzume { namespace dsp {
 

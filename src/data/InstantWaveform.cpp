@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 #include "InstantWaveform.hpp"
 
-#include "world/util.hpp"
+#include "../world/util.hpp"
 
 using namespace uzume::dsp;
 

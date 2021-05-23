@@ -43,7 +43,7 @@ endif()
 
 target_sources(uzume_dsp_test
         PRIVATE
-        WaveformSpectrogramTest.cpp)
+        spectrogram/WaveformSpectrogramTest.cpp)
 
 target_link_libraries(uzume_dsp_test
         PRIVATE

@@ -3,8 +3,8 @@
 // license that can be found in the LICENSE file.
 #ifndef UZUME_DSP_ESTIMATE_F0_HPP
 #define UZUME_DSP_ESTIMATE_F0_HPP
-#include "Contour.hpp"
-#include "Waveform.hpp"
+#include "data/Contour.hpp"
+#include "data/Waveform.hpp"
 
 namespace uzume { namespace dsp {
 

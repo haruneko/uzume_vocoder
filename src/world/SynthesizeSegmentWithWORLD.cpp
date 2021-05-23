@@ -5,15 +5,15 @@
 #include <algorithm>
 
 #include "constant.hpp"
-#include "SynthesizePhraseWithWORLD.hpp"
+#include "SynthesizeSegmentWithWORLD.hpp"
 
 using namespace uzume::dsp::world;
 
-SynthesizePhraseWithWORLD::SynthesizePhraseWithWORLD(SynthesizeImpulseResponse *synthesize)
+SynthesizeSegmentWithWORLD::SynthesizeSegmentWithWORLD(SynthesizeImpulseResponse *synthesize)
         : synthesize(synthesize) {
 }
 
-bool SynthesizePhraseWithWORLD::operator()(PhraseSignal *output, PhraseParameters *input) {
+bool SynthesizeSegmentWithWORLD::operator()(SegmentSignal *output, SegmentParameters *input) {
 
     ImpulseResponse responseBuffer(input->spectrogram->fftSize());
     ImpulseResponseParameters frameBuffer(input->spectrogram->fftSize());

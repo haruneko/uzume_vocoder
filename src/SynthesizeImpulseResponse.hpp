@@ -4,8 +4,8 @@
 #ifndef __DSP_SYNTHESIZE_IMPULSE_RESPONSE_HPP__
 #define __DSP_SYNTHESIZE_IMPULSE_RESPONSE_HPP__
 
-#include "ImpulseResponse.hpp"
-#include "Spectrum.hpp"
+#include "data/ImpulseResponse.hpp"
+#include "data/Spectrum.hpp"
 
 namespace uzume { namespace dsp {
 

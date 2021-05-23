@@ -7,7 +7,7 @@
 #include "../AnalyzeAperiodicity.hpp"
 #include "fft.hpp"
 #include "GaussianNoiseGenerator.hpp"
-#include "../Spectrum.hpp"
+#include "../data/Spectrum.hpp"
 
 namespace uzume { namespace dsp { namespace world {
 

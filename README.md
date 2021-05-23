@@ -32,7 +32,7 @@ and then use uzume_dsp in main.cpp:
 #include <algorithm>
 
 #include "SynthesizeImpulseResponseWithWORLD.hpp"
-#include "SynthesizePhraseWithWORLD.hpp"
+#include "SynthesizeSegmentWithWORLD.hpp"
 #include "Waveform.hpp"
 #include "WaveformSpectrogram.hpp"
 
@@ -47,14 +47,14 @@ int main() {
     WaveformSpectrogram spectrogram(input);
 
     SynthesizeImpulseResponseWithWORLD irs(spectrogram.fftSize(), input->samplingFrequency);
-    SynthesizePhraseWithWORLD synthesize(&irs);
+    SynthesizeSegmentWithWORLD synthesize(&irs);
 
     for(unsigned int i = 0; i < output->length; i++) {
         output->data[i] = 0.0;
     }
 
-    PhraseSignal s(output->data, /* indexMin = */ 0, /* indexMax = */ output->length, output->samplingFrequency);
-    PhraseParameters p(&spectrogram, /* startPhase = */ 0.0, /* startFractionalTimeShift = */ 0.0);
+    SegmentSignal s(output->data, /* indexMin = */ 0, /* indexMax = */ output->length, output->samplingFrequency);
+    SegmentParameters p(&spectrogram, /* startPhase = */ 0.0, /* startFractionalTimeShift = */ 0.0);
 
     synthesize(&s, &p);
 
