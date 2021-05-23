@@ -3,17 +3,17 @@
 # license that can be found in the LICENSE file.
 cmake_minimum_required(VERSION 3.13)
 
-project(uzume_dsp VERSION 0.0.1 LANGUAGES CXX)
+project(uzume_vocoder VERSION 0.0.1 LANGUAGES CXX)
 
-add_library(uzume_dsp STATIC)
-set_property(TARGET uzume_dsp PROPERTY CXX_STANDARD 11)
-target_compile_features(uzume_dsp
+add_library(uzume_vocoder STATIC)
+set_property(TARGET uzume_vocoder PROPERTY CXX_STANDARD 11)
+target_compile_features(uzume_vocoder
         PRIVATE
         cxx_std_11)
-target_compile_options(uzume_dsp
+target_compile_options(uzume_vocoder
         PRIVATE
         -Wall -Wextra -Wno-long-long -pedantic)
-target_sources(uzume_dsp
+target_sources(uzume_vocoder
         PRIVATE
         world/AnalyzeAperiodicityWithD4C.cpp
         world/AnalyzePeriodicityWithCheapTrick.cpp
@@ -33,7 +33,7 @@ target_sources(uzume_dsp
         world/util.cpp
         data/Waveform.cpp
         spectrogram/WaveformSpectrogram.cpp)
-set_property(TARGET uzume_dsp
+set_property(TARGET uzume_vocoder
         PROPERTY PUBLIC_HEADER
         AnalyzeAperiodicity.hpp
         world/AnalyzeAperiodicityWithD4C.hpp
@@ -56,12 +56,12 @@ set_property(TARGET uzume_dsp
         world/util.hpp
         data/Waveform.hpp
         spectrogram/WaveformSpectrogram.hpp)
-target_include_directories(uzume_dsp
+target_include_directories(uzume_vocoder
         INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<INSTALL_INTERFACE:include>)
-install(TARGETS uzume_dsp
-        EXPORT libuzume_dsp
+install(TARGETS uzume_vocoder
+        EXPORT libuzume_vocoder
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
-        PUBLIC_HEADER DESTINATION include/dsp)
+        PUBLIC_HEADER DESTINATION include/vocoder)

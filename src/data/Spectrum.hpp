@@ -1,10 +1,10 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef __DSP_SPECTRUM_HPP
-#define __DSP_SPECTRUM_HPP
+#ifndef __VOCODER_SPECTRUM_HPP
+#define __VOCODER_SPECTRUM_HPP
 
-namespace uzume { namespace dsp {
+namespace uzume { namespace vocoder {
 /**
  * Spectrum represents a pair of spectra, periodic one and aperiodic one.
  * This class HAS a responsibility to free its allocated memories.

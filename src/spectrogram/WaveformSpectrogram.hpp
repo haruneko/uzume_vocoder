@@ -1,8 +1,8 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_DSP_WAVEFORM_SPECTROGRAM_HPP
-#define UZUME_DSP_WAVEFORM_SPECTROGRAM_HPP
+#ifndef UZUME_VOCODER_WAVEFORM_SPECTROGRAM_HPP
+#define UZUME_VOCODER_WAVEFORM_SPECTROGRAM_HPP
 
 #include <functional>
 
@@ -15,7 +15,7 @@
 #include "../data/Waveform.hpp"
 
 namespace uzume {
-    namespace dsp {
+    namespace vocoder {
 
         /**
          * WaveformSpectrogram is an implementation of Spectrogram.
@@ -57,4 +57,4 @@ namespace uzume {
     }
 }
 
-#endif //UZUME_DSP_WAVEFORM_SPECTROGRAM_HPP
+#endif //UZUME_VOCODER_WAVEFORM_SPECTROGRAM_HPP

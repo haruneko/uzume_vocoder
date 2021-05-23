@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 #include "SynthesizeSegment.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::vocoder;
 
 SegmentSignal::SegmentSignal(double *waveStartPoint, int indexMin, int indexMax, unsigned int samplingFrequency)
         : waveStartPoint(waveStartPoint), indexMin(indexMin), indexMax(indexMax), samplingFrequency(samplingFrequency) {

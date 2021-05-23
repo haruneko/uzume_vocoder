@@ -8,7 +8,7 @@
 #include "constant.hpp"
 #include "util.hpp"
 
-using namespace uzume::dsp::world;
+using namespace uzume::vocoder::world;
 
 namespace {
 
@@ -172,7 +172,7 @@ namespace {
 }  // namespace
 
 AnalyzePeriodicityWithCheapTrick::AnalyzePeriodicityWithCheapTrick(unsigned int samplingFrequency)
-        : fftSize(uzume::dsp::world::fftSize(samplingFrequency)), samplingFrequency(samplingFrequency),
+        : fftSize(uzume::vocoder::world::fftSize(samplingFrequency)), samplingFrequency(samplingFrequency),
           forwardRealFft({0}), inverseRealFft({0}),
           randn() {
     InitializeForwardRealFFT(fftSize, &forwardRealFft);

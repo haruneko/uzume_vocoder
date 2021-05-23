@@ -1,10 +1,10 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_DSP_CONSTANT_HPP
-#define UZUME_DSP_CONSTANT_HPP
+#ifndef UZUME_VOCODER_CONSTANT_HPP
+#define UZUME_VOCODER_CONSTANT_HPP
 
-namespace uzume { namespace dsp { namespace world {
+namespace uzume { namespace vocoder { namespace world {
     extern const double CutOff;
     extern const double FloorF0StoneMask;
     extern const double Pi;
@@ -27,4 +27,4 @@ namespace uzume { namespace dsp { namespace world {
     extern const double LowestF0D4CLoveTrain;
 } } }
 
-#endif //UZUME_DSP_CONSTANT_HPP
+#endif //UZUME_VOCODER_CONSTANT_HPP

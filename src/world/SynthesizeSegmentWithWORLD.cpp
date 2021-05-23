@@ -7,7 +7,7 @@
 #include "constant.hpp"
 #include "SynthesizeSegmentWithWORLD.hpp"
 
-using namespace uzume::dsp::world;
+using namespace uzume::vocoder::world;
 
 SynthesizeSegmentWithWORLD::SynthesizeSegmentWithWORLD(SynthesizeImpulseResponse *synthesize)
         : synthesize(synthesize) {

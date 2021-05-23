@@ -6,7 +6,7 @@
 #include "constant.hpp"
 #include "util.hpp"
 
-using namespace uzume::dsp::world;
+using namespace uzume::vocoder::world;
 
 namespace {
     void diff(const double *x, int x_length, double *y) {
@@ -55,12 +55,12 @@ namespace {
 
 }
 
-int uzume::dsp::world::matlab_round(double x) {
+int uzume::vocoder::world::matlab_round(double x) {
     return x > 0 ? static_cast<int>(x + 0.5) : static_cast<int>(x - 0.5);
 }
 
 
-void uzume::dsp::world::DCCorrection(const double *input, double f0, int fs, int fft_size, double *output) {
+void uzume::vocoder::world::DCCorrection(const double *input, double f0, int fs, int fft_size, double *output) {
     int upper_limit = 2 + static_cast<int>(f0 * fft_size / fs);
     double *low_frequency_replica = new double[upper_limit];
     double *low_frequency_axis = new double[upper_limit];
@@ -80,7 +80,7 @@ void uzume::dsp::world::DCCorrection(const double *input, double f0, int fs, int
     delete[] low_frequency_axis;
 }
 
-void uzume::dsp::world::LinearSmoothing(const double *input, double width, int fs, int fft_size, double *output) {
+void uzume::vocoder::world::LinearSmoothing(const double *input, double width, int fs, int fft_size, double *output) {
     int boundary = static_cast<int>(width * fft_size / fs) + 1;
 
     // These parameters are set by the other function.
@@ -115,7 +115,7 @@ void uzume::dsp::world::LinearSmoothing(const double *input, double width, int f
     delete[] high_levels;
 }
 
-void uzume::dsp::world::NuttallWindow(int y_length, double *y) {
+void uzume::vocoder::world::NuttallWindow(int y_length, double *y) {
     double tmp;
     for (int i = 0; i < y_length; ++i) {
         tmp  = i / (y_length - 1.0);
@@ -123,7 +123,7 @@ void uzume::dsp::world::NuttallWindow(int y_length, double *y) {
     }
 }
 
-void uzume::dsp::world::histc(const double *x, int x_length, const double *edges, int edges_length, int *index) {
+void uzume::vocoder::world::histc(const double *x, int x_length, const double *edges, int edges_length, int *index) {
     int count = 1;
 
     int i = 0;
@@ -143,7 +143,7 @@ void uzume::dsp::world::histc(const double *x, int x_length, const double *edges
     for (i++; i < edges_length; ++i) index[i] = count;
 }
 
-void uzume::dsp::world::interp1(const double *x, const double *y, int x_length, const double *xi, int xi_length, double *yi) {
+void uzume::vocoder::world::interp1(const double *x, const double *y, int x_length, const double *xi, int xi_length, double *yi) {
     double *h = new double[x_length - 1];
     double *p = new double[xi_length];
     double *s = new double[xi_length];
@@ -169,6 +169,6 @@ void uzume::dsp::world::interp1(const double *x, const double *y, int x_length, 
     delete[] h;
 }
 
-int uzume::dsp::world::fftSize(unsigned int samplingFrequency) {
+int uzume::vocoder::world::fftSize(unsigned int samplingFrequency) {
     return (int)pow(2.0, 1.0 + (int)(log(3.0 * samplingFrequency / 71.0 + 1) / Log2));
 }

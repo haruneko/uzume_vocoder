@@ -1,12 +1,12 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_DSP_SYNTHESIZE_Segment_WITH_WORLD_HPP
-#define UZUME_DSP_SYNTHESIZE_Segment_WITH_WORLD_HPP
+#ifndef UZUME_VOCODER_SYNTHESIZE_Segment_WITH_WORLD_HPP
+#define UZUME_VOCODER_SYNTHESIZE_Segment_WITH_WORLD_HPP
 #include "../SynthesizeImpulseResponse.hpp"
 #include "../SynthesizeSegment.hpp"
 
-namespace uzume { namespace dsp { namespace world {
+namespace uzume { namespace vocoder { namespace world {
 
 class SynthesizeSegmentWithWORLD final : public SynthesizeSegment {
 public:
@@ -21,4 +21,4 @@ private:
 
 } } }
 
-#endif //UZUME_DSP_SYNTHESIZE_Segment_WITH_WORLD_HPP
+#endif //UZUME_VOCODER_SYNTHESIZE_Segment_WITH_WORLD_HPP

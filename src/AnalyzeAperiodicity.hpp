@@ -1,12 +1,12 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_DSP_ANALYZE_APERIODICITY_HPP
-#define UZUME_DSP_ANALYZE_APERIODICITY_HPP
+#ifndef UZUME_VOCODER_ANALYZE_APERIODICITY_HPP
+#define UZUME_VOCODER_ANALYZE_APERIODICITY_HPP
 #include "data/InstantWaveform.hpp"
 #include "data/Spectrum.hpp"
 
-namespace uzume { namespace dsp {
+namespace uzume { namespace vocoder {
 
 /**
  * AnalyzeAperiodicity is an interface to analyze aperiodic spectrum.
@@ -25,4 +25,4 @@ public:
 
 } }
 
-#endif //UZUME_DSP_ANALYZE_APERIODICITY_HPP
+#endif //UZUME_VOCODER_ANALYZE_APERIODICITY_HPP

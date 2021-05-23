@@ -6,8 +6,8 @@
 #include "constant.hpp"
 #include "SynthesizeImpulseResponseWithWORLD.hpp"
 
-using namespace uzume::dsp;
-using namespace uzume::dsp::world;
+using namespace uzume::vocoder;
+using namespace uzume::vocoder::world;
 
 // WORLD (https://github.com/mmorise/World/) by mmorise is the original of those codes inside namespace.
 namespace {

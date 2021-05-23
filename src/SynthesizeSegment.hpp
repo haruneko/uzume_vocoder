@@ -1,12 +1,12 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef __DSP_SYNTHESIZE_Segment_HPP__
-#define __DSP_SYNTHESIZE_Segment_HPP__
+#ifndef __VOCODER_SYNTHESIZE_Segment_HPP__
+#define __VOCODER_SYNTHESIZE_Segment_HPP__
 
 #include "Spectrogram.hpp"
 
-namespace uzume { namespace dsp {
+namespace uzume { namespace vocoder {
 
 /**
  * SegmentSignal is a value class for Segment synthesis output.

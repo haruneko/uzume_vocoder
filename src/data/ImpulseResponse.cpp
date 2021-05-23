@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 #include "ImpulseResponse.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::vocoder;
 
 ImpulseResponse::ImpulseResponse(unsigned int length) : raw(nullptr), _length(length) {
     if (_length != 0) {

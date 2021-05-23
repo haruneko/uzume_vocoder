@@ -5,7 +5,7 @@
 #include <cmath>
 #include "Contour.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::vocoder;
 
 Contour::Contour(double msLength, double msFramePeriod)
         : length((int)(msLength / msFramePeriod) + 1), data(nullptr), msFramePeriod(msFramePeriod) {

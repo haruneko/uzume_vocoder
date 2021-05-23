@@ -8,9 +8,9 @@
 #include "data/Waveform.hpp"
 #include "spectrogram/WaveformSpectrogram.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::vocoder;
 
-// This is a sample to use dsp directory.
+// This is a sample to use vocoder directory.
 int main() {
     const char *inputPath = "/path/to/input.wav";
     const char *outputPath = "/path/to/output.wav";

@@ -13,20 +13,20 @@ Under MIT License. See LICENSE file.
 Write dependencies in your CMakeLists.txt:
 ```
 ## Dependencies
-ExternalProject_add(uzume_dsp
-        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/uzume_dsp
-        GIT_REPOSITORY https://github.com/haruneko/uzume_dsp
+ExternalProject_add(uzume_vocoder
+        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/uzume_vocoder
+        GIT_REPOSITORY https://github.com/haruneko/uzume_vocoder
         GIT_TAG master
         INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}
         CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}"
         )
-add_dependencies(your_app uzume_dsp)
+add_dependencies(your_app uzume_vocoder)
 link_directories(your_app PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/lib)
 target_include_directories(your_app PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/include)
-target_link_libraries(your_app PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/lib/libuzume_dsp.a)
+target_link_libraries(your_app PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/lib/libuzume_vocoder.a)
 ```
 
-and then use uzume_dsp in main.cpp:
+and then use uzume_vocoder in main.cpp:
 
 ```
 #include <algorithm>
@@ -36,9 +36,9 @@ and then use uzume_dsp in main.cpp:
 #include "Waveform.hpp"
 #include "WaveformSpectrogram.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::vocoder;
 
-// This is a sample to use dsp directory.
+// This is a sample to use vocoder directory.
 int main() {
     const char *inputPath = "/path/to/input.wav";
     const char *outputPath = "/path/to/output.wav";

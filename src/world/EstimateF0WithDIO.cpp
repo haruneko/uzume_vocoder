@@ -7,7 +7,7 @@
 #include "fft.hpp"
 #include "util.hpp"
 
-using namespace uzume::dsp::world;
+using namespace uzume::vocoder::world;
 
 //-----------------------------------------------------------------------------
 // struct for GetFourZeroCrossingIntervals()

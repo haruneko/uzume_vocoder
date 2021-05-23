@@ -5,7 +5,7 @@
 #include "NaiveSpectrogram.hpp"
 #include "../world/util.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::vocoder;
 
 namespace {
     inline void initializeSpecgram(double ***target, unsigned int length, unsigned int fftSize) {

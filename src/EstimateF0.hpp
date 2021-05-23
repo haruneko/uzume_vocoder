@@ -1,12 +1,12 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_DSP_ESTIMATE_F0_HPP
-#define UZUME_DSP_ESTIMATE_F0_HPP
+#ifndef UZUME_VOCODER_ESTIMATE_F0_HPP
+#define UZUME_VOCODER_ESTIMATE_F0_HPP
 #include "data/Contour.hpp"
 #include "data/Waveform.hpp"
 
-namespace uzume { namespace dsp {
+namespace uzume { namespace vocoder {
 
 /**
  * EstimateF0 is an interface to estimate f0.
@@ -23,4 +23,4 @@ public:
 
 } }
 
-#endif //UZUME_DSP_ESTIMATE_F0_HPP
+#endif //UZUME_VOCODER_ESTIMATE_F0_HPP

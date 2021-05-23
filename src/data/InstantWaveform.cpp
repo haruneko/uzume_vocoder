@@ -5,11 +5,11 @@
 
 #include "../world/util.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::vocoder;
 
 InstantWaveform::InstantWaveform(unsigned int samplingFrequency)
         : data(nullptr), length(0), samplingFrequency(samplingFrequency) {
-    length = uzume::dsp::world::fftSize(samplingFrequency);
+    length = uzume::vocoder::world::fftSize(samplingFrequency);
     data = (new double[length * 2]) + length;
     f0 = 0.0;
 }

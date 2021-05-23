@@ -10,8 +10,8 @@
 #include "WaveformSpectrogram.hpp"
 #include "../world/AnalyzePeriodicityWithCheapTrick.hpp"
 
-using namespace uzume::dsp;
-using namespace uzume::dsp::world;
+using namespace uzume::vocoder;
+using namespace uzume::vocoder::world;
 
 const std::function<AnalyzeAperiodicity *(unsigned int)> WaveformSpectrogram::DefaultAperiodicAnalysisFactory = [](unsigned int samplingFrequency) {
     return new AnalyzeAperiodicityWithD4C(samplingFrequency);
@@ -52,7 +52,7 @@ WaveformSpectrogram::~WaveformSpectrogram() noexcept {
 }
 
 unsigned int WaveformSpectrogram::fftSize() const {
-    return uzume::dsp::world::fftSize(waveform->samplingFrequency);
+    return uzume::vocoder::world::fftSize(waveform->samplingFrequency);
 }
 
 double WaveformSpectrogram::msLength() const {

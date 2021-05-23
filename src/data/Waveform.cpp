@@ -4,7 +4,7 @@
 #include "../world/audioio.h"
 #include "Waveform.hpp"
 
-using namespace uzume::dsp;
+using namespace uzume::vocoder;
 
 Waveform::Waveform(unsigned int length, unsigned int samplingFrequency)
         : data(nullptr), length(length), samplingFrequency(samplingFrequency){

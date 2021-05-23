@@ -1,13 +1,13 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef __DSP_SYNTHESIZE_IMPULSE_RESPONSE_HPP__
-#define __DSP_SYNTHESIZE_IMPULSE_RESPONSE_HPP__
+#ifndef __VOCODER_SYNTHESIZE_IMPULSE_RESPONSE_HPP__
+#define __VOCODER_SYNTHESIZE_IMPULSE_RESPONSE_HPP__
 
 #include "data/ImpulseResponse.hpp"
 #include "data/Spectrum.hpp"
 
-namespace uzume { namespace dsp {
+namespace uzume { namespace vocoder {
 
 class ImpulseResponseParameters final {
 public:

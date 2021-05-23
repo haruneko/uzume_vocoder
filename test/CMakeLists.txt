@@ -3,9 +3,9 @@
 # license that can be found in the LICENSE file.
 cmake_minimum_required(VERSION 3.16)
 
-project(uzume_dsp_test)
+project(uzume_vocoder_test)
 
-add_executable(uzume_dsp_test)
+add_executable(uzume_vocoder_test)
 
 find_package(Threads REQUIRED)
 
@@ -41,18 +41,18 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
     include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-target_sources(uzume_dsp_test
+target_sources(uzume_vocoder_test
         PRIVATE
         spectrogram/WaveformSpectrogramTest.cpp)
 
-target_link_libraries(uzume_dsp_test
+target_link_libraries(uzume_vocoder_test
         PRIVATE
-        uzume_dsp
+        uzume_vocoder
         gtest
         gtest_main
         gmock)
 
-target_include_directories(uzume_dsp_test
+target_include_directories(uzume_vocoder_test
         PRIVATE
         ${CMAKE_BINARY_DIR}/googletest-src/googletest/include
         ${CMAKE_BINARY_DIR}/googletest-src/googlemock/include)
@@ -60,4 +60,4 @@ target_include_directories(uzume_dsp_test
 enable_testing()
 
 include(GoogleTest)
-gtest_add_tests(TARGET uzume_dsp_test)
+gtest_add_tests(TARGET uzume_vocoder_test)

@@ -1,13 +1,13 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_DSP_ANALYZE_PERIODICITY_WITH_CHEAPTRICK_HPP
-#define UZUME_DSP_ANALYZE_PERIODICITY_WITH_CHEAPTRICK_HPP
+#ifndef UZUME_VOCODER_ANALYZE_PERIODICITY_WITH_CHEAPTRICK_HPP
+#define UZUME_VOCODER_ANALYZE_PERIODICITY_WITH_CHEAPTRICK_HPP
 #include "fft.hpp"
 #include "../AnalyzePeriodicity.hpp"
 #include "GaussianNoiseGenerator.hpp"
 
-namespace uzume { namespace dsp { namespace world {
+namespace uzume { namespace vocoder { namespace world {
 
 /**
  * AnalyzePeriodicityWithCheapTrick is an implementation of periodic spectrum analysis.
@@ -35,4 +35,4 @@ private:
 
 } } }
 
-#endif //UZUME_DSP_ANALYZE_PERIODICITY_WITH_CHEAPTRICK_HPP
+#endif //UZUME_VOCODER_ANALYZE_PERIODICITY_WITH_CHEAPTRICK_HPP

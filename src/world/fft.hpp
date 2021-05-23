@@ -1,7 +1,7 @@
 // Modified by Hal@shurabaP.
 // The original of this source code is WORLD(https://github.com/mmorise/World/) by mmorise.
-#ifndef __DSP_FFT_HPP__
-#define __DSP_FFT_HPP__
+#ifndef __VOCODER_FFT_HPP__
+#define __VOCODER_FFT_HPP__
 
 // Complex number for FFT
 typedef double fft_complex[2];

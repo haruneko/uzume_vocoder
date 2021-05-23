@@ -1,12 +1,12 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef __DSP_SPECTROGRAM_HPP__
-#define __DSP_SPECTROGRAM_HPP__
+#ifndef __VOCODER_SPECTROGRAM_HPP__
+#define __VOCODER_SPECTROGRAM_HPP__
 
 #include "data/Spectrum.hpp"
 
-namespace uzume { namespace dsp {
+namespace uzume { namespace vocoder {
 
 /**
  * Spectrogram represents an interface of vocal spectrogram.

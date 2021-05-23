@@ -1,13 +1,13 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_DSP_SYNTHESIZE_IMPULSE_RESPONSE_WITH_WORLD_HPP
-#define UZUME_DSP_SYNTHESIZE_IMPULSE_RESPONSE_WITH_WORLD_HPP
+#ifndef UZUME_VOCODER_SYNTHESIZE_IMPULSE_RESPONSE_WITH_WORLD_HPP
+#define UZUME_VOCODER_SYNTHESIZE_IMPULSE_RESPONSE_WITH_WORLD_HPP
 #include "fft.hpp"
 #include "GaussianNoiseGenerator.hpp"
 #include "../SynthesizeImpulseResponse.hpp"
 
-namespace uzume { namespace dsp { namespace world {
+namespace uzume { namespace vocoder { namespace world {
 
 /**
 * SynthesizeImpulseResponseWithWORLD is WORLD's implementation of the SynthesizeImpulseResponse class.
@@ -43,4 +43,4 @@ private:
 };
 
 } } }
-#endif //UZUME_DSP_SYNTHESIZE_IMPULSE_RESPONSE_WITH_WORLD_HPP
+#endif //UZUME_VOCODER_SYNTHESIZE_IMPULSE_RESPONSE_WITH_WORLD_HPP

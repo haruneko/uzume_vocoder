@@ -1,10 +1,10 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef __DSP_IMPULSE_RESPONSE_HPP__
-#define __DSP_IMPULSE_RESPONSE_HPP__
+#ifndef __VOCODER_IMPULSE_RESPONSE_HPP__
+#define __VOCODER_IMPULSE_RESPONSE_HPP__
 
-namespace uzume { namespace dsp {
+namespace uzume { namespace vocoder {
 
 /**
  * ImpulseResponse buffers an impulse response.

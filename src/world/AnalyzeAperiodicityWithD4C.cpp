@@ -7,7 +7,7 @@
 #include "constant.hpp"
 #include "util.hpp"
 
-using namespace uzume::dsp::world;
+using namespace uzume::vocoder::world;
 
 namespace {
     //-----------------------------------------------------------------------------
@@ -294,7 +294,7 @@ namespace {
 }  // namespace
 
 AnalyzeAperiodicityWithD4C::AnalyzeAperiodicityWithD4C(unsigned int samplingFrequency)
-        : fftSize(uzume::dsp::world::fftSize(samplingFrequency)), samplingFrequency(samplingFrequency),
+        : fftSize(uzume::vocoder::world::fftSize(samplingFrequency)), samplingFrequency(samplingFrequency),
           forwardRealFft({0}), inverseRealFft({0}),
           coarseAperiodicity(nullptr), coarseFrequencyAxis(nullptr), frequencyAxis(nullptr), nuttallWindow(nullptr),
           forwardRealFFtForD4CLoveTrain({0}),
