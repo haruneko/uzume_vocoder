@@ -15,47 +15,49 @@ target_compile_options(uzume_vocoder
         -Wall -Wextra -Wno-long-long -pedantic)
 target_sources(uzume_vocoder
         PRIVATE
+        data/Contour.cpp
+        data/ImpulseResponse.cpp
+        data/InstantWaveform.cpp
+        data/Spectrum.cpp
+        data/Waveform.cpp
+        spectrogram/NaiveSpectrogram.cpp
+        spectrogram/StretchedPartialSpectrogram.cpp
+        spectrogram/WaveformSpectrogram.cpp
         world/AnalyzeAperiodicityWithD4C.cpp
         world/AnalyzePeriodicityWithCheapTrick.cpp
         world/audioio.cpp
         world/constant.cpp
-        data/Contour.cpp
         world/EstimateF0WithDIO.cpp
         world/fft.cpp
         world/GaussianNoiseGenerator.cpp
-        data/ImpulseResponse.cpp
-        data/InstantWaveform.cpp
-        spectrogram/NaiveSpectrogram.cpp
-        data/Spectrum.cpp
         world/SynthesizeImpulseResponseWithWORLD.cpp
-        SynthesizeSegment.cpp
         world/SynthesizeSegmentWithWORLD.cpp
         world/util.cpp
-        data/Waveform.cpp
-        spectrogram/WaveformSpectrogram.cpp)
+        SynthesizeSegment.cpp)
 set_property(TARGET uzume_vocoder
         PROPERTY PUBLIC_HEADER
         AnalyzeAperiodicity.hpp
-        world/AnalyzeAperiodicityWithD4C.hpp
         AnalyzePeriodicity.hpp
-        world/AnalyzePeriodicityWithCheapTrick.hpp
-        data/Contour.hpp
         EstimateF0.hpp
+        Spectrogram.hpp
+        SynthesizeImpulseResponse.hpp
+        SynthesizeSegment.hpp
+        data/Contour.hpp
+        data/ImpulseResponse.hpp
+        data/InstantWaveform.hpp
+        data/Spectrum.hpp
+        data/Waveform.hpp
+        spectrogram/NaiveSpectrogram.hpp
+        spectrogram/StretchedPartialSpectrogram.hpp
+        spectrogram/WaveformSpectrogram.hpp
+        world/AnalyzeAperiodicityWithD4C.hpp
+        world/AnalyzePeriodicityWithCheapTrick.hpp
         world/EstimateF0WithDIO.hpp
         world/fft.hpp
         world/GaussianNoiseGenerator.hpp
-        data/ImpulseResponse.hpp
-        data/InstantWaveform.hpp
-        spectrogram/NaiveSpectrogram.hpp
-        Spectrogram.hpp
-        data/Spectrum.hpp
-        SynthesizeImpulseResponse.hpp
         world/SynthesizeImpulseResponseWithWORLD.hpp
-        SynthesizeSegment.hpp
         world/SynthesizeSegmentWithWORLD.hpp
-        world/util.hpp
-        data/Waveform.hpp
-        spectrogram/WaveformSpectrogram.hpp)
+        world/util.hpp)
 target_include_directories(uzume_vocoder
         INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
