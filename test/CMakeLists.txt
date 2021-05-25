@@ -24,11 +24,13 @@ add_executable(uzume_vocoder_test)
 
 target_sources(uzume_vocoder_test
         PRIVATE
+        spectrogram/StretchedPartialSpectrogram.cpp
         spectrogram/WaveformSpectrogramTest.cpp)
 
 target_link_libraries(uzume_vocoder_test
         PRIVATE
         uzume_vocoder
+        gmock
         gtest
         gtest_main)
 

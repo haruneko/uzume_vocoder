@@ -23,6 +23,7 @@ public:
 
 private:
     const Spectrogram *spectrogram;
+    const TimeAxisMap *timeAxisMap;
 };
 
 } }
