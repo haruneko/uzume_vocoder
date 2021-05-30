@@ -66,4 +66,5 @@ install(TARGETS uzume_vocoder
         EXPORT libuzume_vocoder
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib)
-install(DIRECTORY . DESTINATION include/uzume_vocoder)
+install(DIRECTORY . DESTINATION include/uzume_vocoder
+        FILES_MATCHING PATTERN "*.hpp")
