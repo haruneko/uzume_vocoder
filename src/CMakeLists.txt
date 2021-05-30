@@ -65,5 +65,5 @@ target_include_directories(uzume_vocoder
 install(TARGETS uzume_vocoder
         EXPORT libuzume_vocoder
         ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-        PUBLIC_HEADER DESTINATION include/uzume_vocoder)
+        LIBRARY DESTINATION lib)
+install(DIRECTORY . DESTINATION include/uzume_vocoder)
