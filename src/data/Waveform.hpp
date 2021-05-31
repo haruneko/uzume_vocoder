@@ -19,6 +19,7 @@ public:
 
     static Waveform *read(const char *filepath);
     bool save(const char *filepath, int bits = 16) const;
+    void clear();
 };
 
 } }
