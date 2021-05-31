@@ -18,7 +18,7 @@ public:
     SimpleDoubledTimeAxisMap() = delete;
     SimpleDoubledTimeAxisMap(double msLength) : _msLength(msLength) { }
     ~SimpleDoubledTimeAxisMap() = default;
-    double at(double ms) const { return ms; }
+    double at(double ms) const { return ms / 2.0; }
     double msLength() const { return _msLength; }
 private:
     const double _msLength;
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
     auto *inSpec = new WaveformSpectrogram(in);
 
     // prepare time axis map, output spectrogram and output waveform.
-    auto *tam = new SimpleDoubledTimeAxisMap(inSpec->msLength());
+    auto *tam = new SimpleDoubledTimeAxisMap(inSpec->msLength() * 2.0);
     auto *outSpec = new StretchedPartialSpectrogram(inSpec, tam);
     auto *out = new Waveform(in->length * 2, in->samplingFrequency);
 
