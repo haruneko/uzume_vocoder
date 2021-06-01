@@ -4,7 +4,6 @@
 #ifndef UZUME_VOCODER_STRETCHED_PARTIAL_SPECTROGRAM_HPP
 #define UZUME_VOCODER_STRETCHED_PARTIAL_SPECTROGRAM_HPP
 
-#include <functional>
 #include "../Spectrogram.hpp"
 #include "../TimeAxisMap.hpp"
 
