@@ -10,9 +10,6 @@ set_property(TARGET uzume_vocoder PROPERTY CXX_STANDARD 11)
 target_compile_features(uzume_vocoder
         PRIVATE
         cxx_std_11)
-target_compile_options(uzume_vocoder
-        PRIVATE
-        -Wall -Wno-long-long -pedantic)
 target_sources(uzume_vocoder
         PRIVATE
         data/Contour.cpp
