@@ -12,7 +12,7 @@ target_compile_features(uzume_vocoder
         cxx_std_11)
 target_compile_options(uzume_vocoder
         PRIVATE
-        -Wall -Wextra -Wno-long-long -pedantic)
+        -Wall -Wno-long-long -pedantic)
 target_sources(uzume_vocoder
         PRIVATE
         data/Contour.cpp
