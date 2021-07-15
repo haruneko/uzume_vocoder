@@ -6,6 +6,9 @@
 
 namespace uzume { namespace vocoder {
 
+/**
+ * InstantWaveform represents an instant waveform synthesized from a Spectrogram.
+ */
 class InstantWaveform final {
 public:
     InstantWaveform(unsigned int samplingFrequency);

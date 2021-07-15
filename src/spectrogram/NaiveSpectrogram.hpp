@@ -7,6 +7,10 @@
 
 namespace uzume { namespace vocoder {
 
+/**
+ * NaiveSpectrogram represents a Spectrogram that
+ * contains raw f0Contour, PeriodicSpectrogram and AperiodicSpectrogram.
+ */
 class NaiveSpectrogram final : public Spectrogram {
 public:
     NaiveSpectrogram() = delete;

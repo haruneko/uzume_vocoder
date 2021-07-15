@@ -6,6 +6,9 @@
 
 namespace uzume { namespace vocoder {
 
+/**
+ * Waveform represents a total waveform.
+ */
 class Waveform {
 public:
     Waveform(unsigned int length, unsigned int samplingFrequency);

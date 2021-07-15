@@ -25,7 +25,7 @@ public:
     unsigned int fftSize() const override;
 
 private:
-    ArraySpectrogramAggregator(std::vector<const Spectrogram *> &spectrograms);
+    explicit ArraySpectrogramAggregator(std::vector<const Spectrogram *> &spectrograms);
 
     /**
      * @param ms represents a position in a entire Spectrogram that connects each element in array.

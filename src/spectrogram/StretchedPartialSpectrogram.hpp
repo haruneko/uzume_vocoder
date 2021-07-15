@@ -9,6 +9,10 @@
 
 namespace uzume { namespace vocoder {
 
+/**
+ * StretchedPartialSpectrogram represents a spectrogram
+ * specified begin time and end time, and stretched with whole entire msLength.
+ */
 class StretchedPartialSpectrogram final : public Spectrogram {
 public:
     StretchedPartialSpectrogram() = delete;
