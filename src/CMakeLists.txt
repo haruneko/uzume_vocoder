@@ -17,6 +17,8 @@ target_sources(uzume_vocoder
         data/InstantWaveform.cpp
         data/Spectrum.cpp
         data/Waveform.cpp
+        spectrogram/ArraySpectrogramAggregator.cpp
+        spectrogram/ArraySpectrogramAggregator.hpp
         spectrogram/NaiveSpectrogram.cpp
         spectrogram/StretchedPartialSpectrogram.cpp
         spectrogram/WaveformSpectrogram.cpp
