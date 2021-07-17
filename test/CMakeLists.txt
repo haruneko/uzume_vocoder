@@ -24,6 +24,7 @@ add_executable(uzume_vocoder_test)
 
 target_sources(uzume_vocoder_test
         PRIVATE
+        data/LinearTimeAxisMapTest.cpp
         spectrogram/ArraySpectrogramAggregatorTest.cpp
         spectrogram/StretchedPartialSpectrogramTest.cpp
         spectrogram/WaveformSpectrogramTest.cpp)

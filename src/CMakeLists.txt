@@ -15,10 +15,10 @@ target_sources(uzume_vocoder
         data/Contour.cpp
         data/ImpulseResponse.cpp
         data/InstantWaveform.cpp
+        data/LinearTimeAxisMap.cpp
         data/Spectrum.cpp
         data/Waveform.cpp
         spectrogram/ArraySpectrogramAggregator.cpp
-        spectrogram/ArraySpectrogramAggregator.hpp
         spectrogram/NaiveSpectrogram.cpp
         spectrogram/StretchedPartialSpectrogram.cpp
         spectrogram/WaveformSpectrogram.cpp
@@ -44,8 +44,10 @@ set_property(TARGET uzume_vocoder
         data/Contour.hpp
         data/ImpulseResponse.hpp
         data/InstantWaveform.hpp
+        data/LinearTimeAxisMap.hpp
         data/Spectrum.hpp
         data/Waveform.hpp
+        spectrogram/ArraySpectrogramAggregator.hpp
         spectrogram/NaiveSpectrogram.hpp
         spectrogram/StretchedPartialSpectrogram.hpp
         spectrogram/WaveformSpectrogram.hpp
