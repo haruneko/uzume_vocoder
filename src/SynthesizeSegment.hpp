@@ -1,8 +1,8 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef __VOCODER_SYNTHESIZE_Segment_HPP__
-#define __VOCODER_SYNTHESIZE_Segment_HPP__
+#ifndef __UZUME_VOCODER_SYNTHESIZE_SEGMENT_HPP__
+#define __UZUME_VOCODER_SYNTHESIZE_SEGMENT_HPP__
 
 #include "Spectrogram.hpp"
 
@@ -16,7 +16,9 @@ namespace uzume { namespace vocoder {
 class SegmentSignal final {
 public:
     SegmentSignal() = delete;
-    SegmentSignal(double *waveStartPoint, int indexMin, int indexMax, unsigned int samplingFrequency);
+    SegmentSignal(double *waveStartPoint, int indexMin, int indexMax, unsigned int samplingFrequency)
+            : waveStartPoint(waveStartPoint), indexMin(indexMin), indexMax(indexMax), samplingFrequency(samplingFrequency) {
+    }
     double *waveStartPoint;
     int indexMin;
     int indexMax;
@@ -32,9 +34,11 @@ public:
 class SegmentParameters final {
 public:
     SegmentParameters() = delete;
-    SegmentParameters(Spectrogram *spectrogram, double startPhase, double startFractionalTimeShift);
+    SegmentParameters(const Spectrogram *spectrogram, double startPhase, double startFractionalTimeShift)
+            : spectrogram(spectrogram), startPhase(startPhase), startFractionalTimeShift(startFractionalTimeShift) {
+    }
 
-    Spectrogram *spectrogram;
+    const Spectrogram *spectrogram;
     double startPhase;
     double startFractionalTimeShift;
 };
@@ -58,4 +62,4 @@ public:
 
 } }
 
-#endif
+#endif // __UZUME_VOCODER_SYNTHESIZE_SEGMENT_HPP__

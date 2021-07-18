@@ -1,8 +1,8 @@
 // Copyright 2020 Hal@shurabaP.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
-#ifndef UZUME_VOCODER_SYNTHESIZE_Segment_WITH_WORLD_HPP
-#define UZUME_VOCODER_SYNTHESIZE_Segment_WITH_WORLD_HPP
+#ifndef __UZUME_VOCODER_SYNTHESIZE_SEGMENT_WITH_WORLD_HPP__
+#define __UZUME_VOCODER_SYNTHESIZE_SEGMENT_WITH_WORLD_HPP__
 #include "../SynthesizeImpulseResponse.hpp"
 #include "../SynthesizeSegment.hpp"
 
@@ -21,4 +21,4 @@ private:
 
 } } }
 
-#endif //UZUME_VOCODER_SYNTHESIZE_Segment_WITH_WORLD_HPP
+#endif // __UZUME_VOCODER_SYNTHESIZE_SEGMENT_WITH_WORLD_HPP__

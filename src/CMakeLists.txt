@@ -31,8 +31,8 @@ target_sources(uzume_vocoder
         world/GaussianNoiseGenerator.cpp
         world/SynthesizeImpulseResponseWithWORLD.cpp
         world/SynthesizeSegmentWithWORLD.cpp
-        world/util.cpp
-        SynthesizeSegment.cpp)
+        world/SynthesizeWaveformWithWORLD.cpp
+        world/util.cpp)
 set_property(TARGET uzume_vocoder
         PROPERTY PUBLIC_HEADER
         AnalyzeAperiodicity.hpp
@@ -58,6 +58,7 @@ set_property(TARGET uzume_vocoder
         world/GaussianNoiseGenerator.hpp
         world/SynthesizeImpulseResponseWithWORLD.hpp
         world/SynthesizeSegmentWithWORLD.hpp
+        world/SynthesizeWaveformWithWORLD.hpp
         world/util.hpp)
 target_include_directories(uzume_vocoder
         INTERFACE
