@@ -8,6 +8,11 @@
 
 #include "../SynthesizeWaveform.hpp"
 
+namespace uzume { namespace vocoder {
+class SynthesizeImpulseResponse;
+class SynthesizeSegment;
+} }
+
 namespace uzume { namespace vocoder { namespace world {
 
 class SynthesizeWaveformWithWORLD final : public SynthesizeWaveform {
