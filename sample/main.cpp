@@ -3,12 +3,10 @@
 // license that can be found in the LICENSE file.
 
 #include <stdio.h>
-#include <SynthesizeSegment.hpp>
-#include "data/Waveform.hpp"
-#include "spectrogram/StretchedPartialSpectrogram.hpp"
-#include "spectrogram/WaveformSpectrogram.hpp"
-#include "world/SynthesizeImpulseResponseWithWORLD.hpp"
-#include "world/SynthesizeSegmentWithWORLD.hpp"
+#include <data/Waveform.hpp>
+#include <spectrogram/StretchedPartialSpectrogram.hpp>
+#include <spectrogram/WaveformSpectrogram.hpp>
+#include <world/SynthesizeWaveformWithWORLD.hpp>
 
 using namespace uzume::vocoder;
 using namespace uzume::vocoder::world;
@@ -41,15 +39,10 @@ int main(int argc, char *argv[]) {
     auto *outSpec = new StretchedPartialSpectrogram(inSpec, tam);
     auto *out = new Waveform(in->length * 2, in->samplingFrequency);
 
-    // set synthesizer parameters
-    SynthesizeImpulseResponseWithWORLD irs(outSpec->fftSize(), out->samplingFrequency);
-    SynthesizeSegmentWithWORLD synthesize(&irs);
-
-    SegmentSignal s(out->data, /* indexMin = */ 0, /* indexMax = */ out->length, out->samplingFrequency);
-    SegmentParameters p(outSpec, /* startPhase = */ 0.0, /* startFractionalTimeShift = */ 0.0);
+    SynthesizeWaveformWithWORLD synthesize;
 
     // synthesize spectrogram in `outSpec` into output waveform in `out`.
-    synthesize(&s, &p);
+    synthesize(out, outSpec);
 
     // save waveform.
     out->save(outPath);
