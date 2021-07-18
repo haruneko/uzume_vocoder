@@ -29,7 +29,7 @@ WaveformSpectrogram::WaveformSpectrogram(Waveform *waveform,
         const std::function<AnalyzeAperiodicity *(unsigned int)> &aperiodicAnalysisFactory,
         const std::function<AnalyzePeriodicity *(unsigned int)> &periodicAnalysisFactory,
         const std::function<EstimateF0 *(double)> &f0EstimationFactory)
-        : analyzeAperiodicity(nullptr), analyzePeriodicity(nullptr), waveform(waveform), f0(nullptr), iw(nullptr) {
+        : waveform(waveform), analyzeAperiodicity(nullptr), analyzePeriodicity(nullptr), f0(nullptr), iw(nullptr) {
 
     analyzeAperiodicity = aperiodicAnalysisFactory(waveform->samplingFrequency);
     analyzePeriodicity = periodicAnalysisFactory(waveform->samplingFrequency);
@@ -46,7 +46,6 @@ WaveformSpectrogram::WaveformSpectrogram(Waveform *waveform,
 WaveformSpectrogram::~WaveformSpectrogram() noexcept {
     delete analyzeAperiodicity;
     delete analyzePeriodicity;
-    delete waveform;
     delete f0;
     delete iw;
 }

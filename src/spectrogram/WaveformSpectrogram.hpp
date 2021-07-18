@@ -45,11 +45,11 @@ public:
     unsigned int fftSize() const override;
 
 private:
+    Waveform *waveform; // Note that waveform is `not` generated in this class.
+
     AnalyzeAperiodicity *analyzeAperiodicity;
     AnalyzePeriodicity *analyzePeriodicity;
-    Waveform *waveform;
     Contour *f0;
-
     InstantWaveform *iw;
 };
 
