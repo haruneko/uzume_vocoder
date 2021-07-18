@@ -24,6 +24,9 @@ double Waveform::msLength() const {
 
 Waveform *Waveform::read(const char *filepath) {
     int waveLength = GetAudioLength(filepath);
+    if(waveLength <= 0) {
+        return nullptr;
+    }
     auto *res = new Waveform(waveLength, 44100);
     int fs, nbits;
     wavread(filepath, &fs, &nbits, res->data);

@@ -36,9 +36,7 @@ bool SynthesizeWaveformWithWORLD::operator()(Waveform *output, const Spectrogram
     auto irs = synthesizeImpulseResponseFactory(input->fftSize(), output->samplingFrequency);
     auto ss = synthesizeSegmentFactory(irs);
 
-    for(unsigned int i = 0; i < output->length; i++) {
-        output->data[i] = 0.0;
-    }
+    output->clear();
 
     SegmentSignal s(output->data, /* indexMin = */ 0, /* indexMax = */ output->length, output->samplingFrequency);
     SegmentParameters p(input, /* startPhase = */ 0.0, /* startFractionalTimeShift = */ 0.0);
