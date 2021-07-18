@@ -29,35 +29,53 @@ target_link_libraries(your_app PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/lib/libuzume_
 and then use uzume_vocoder in main.cpp:
 
 ```
-#include <algorithm>
-
-#include "SynthesizeImpulseResponseWithWORLD.hpp"
-#include "SynthesizeSegmentWithWORLD.hpp"
-#include "Waveform.hpp"
-#include "WaveformSpectrogram.hpp"
+#include <stdio.h>
+#include <data/Waveform.hpp>
+#include <spectrogram/StretchedPartialSpectrogram.hpp>
+#include <spectrogram/WaveformSpectrogram.hpp>
+#include <world/SynthesizeWaveformWithWORLD.hpp>
 
 using namespace uzume::vocoder;
+using namespace uzume::vocoder::world;
 
-// This is a sample to use vocoder directory.
-int main() {
-    const char *inputPath = "/path/to/input.wav";
-    const char *outputPath = "/path/to/output.wav";
-    Waveform *input = Waveform::read(inputPath);
-    Waveform *output = new Waveform(input->length, input->samplingFrequency);
-    WaveformSpectrogram spectrogram(input);
+class SimpleDoubledTimeAxisMap : public uzume::vocoder::TimeAxisMap {
+public:
+    SimpleDoubledTimeAxisMap() = delete;
+    SimpleDoubledTimeAxisMap(double msLength) : _msLength(msLength) { }
+    ~SimpleDoubledTimeAxisMap() = default;
+    double at(double ms) const { return ms / 2.0; }
+    double msLength() const { return _msLength; }
+private:
+    const double _msLength;
+};
 
-    SynthesizeImpulseResponseWithWORLD irs(spectrogram.fftSize(), input->samplingFrequency);
-    SynthesizeSegmentWithWORLD synthesize(&irs);
-
-    for(unsigned int i = 0; i < output->length; i++) {
-        output->data[i] = 0.0;
+int main(int argc, char *argv[]) {
+    if(argc < 2 || 3 < argc) {
+        printf("usage: uzume_vocoder_sample (in filepath) (out filepath)<optional>");
+        exit(-1);
     }
+    const char *inPath = argv[1];
+    const char *outPath = argc == 3 ? argv[2] : "output.wav";
 
-    SegmentSignal s(output->data, /* indexMin = */ 0, /* indexMax = */ output->length, output->samplingFrequency);
-    SegmentParameters p(&spectrogram, /* startPhase = */ 0.0, /* startFractionalTimeShift = */ 0.0);
+    // simply analyze spectrogram from waveform.
+    auto *in = Waveform::read(inPath);
+    auto *inSpec = new WaveformSpectrogram(in);
 
-    synthesize(&s, &p);
+    // prepare time axis map, output spectrogram and output waveform.
+    auto *tam = new SimpleDoubledTimeAxisMap(inSpec->msLength() * 2.0);
+    auto *outSpec = new StretchedPartialSpectrogram(inSpec, tam);
+    auto *out = new Waveform(in->length * 2, in->samplingFrequency);
 
-    output->save(outputPath);
+    SynthesizeWaveformWithWORLD synthesize;
+
+    // synthesize spectrogram in `outSpec` into output waveform in `out`.
+    synthesize(out, outSpec);
+
+    // save waveform.
+    out->save(outPath);
+
+    return 0;
 }
 ```
+
+See more detail in sample directory.

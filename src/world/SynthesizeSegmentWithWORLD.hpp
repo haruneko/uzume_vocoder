@@ -8,6 +8,9 @@
 
 namespace uzume { namespace vocoder { namespace world {
 
+/**
+ * SynthesizeSegmentWithWORLD is an implementation of SynthesizeSegment with WORLD.
+ */
 class SynthesizeSegmentWithWORLD final : public SynthesizeSegment {
 public:
     SynthesizeSegmentWithWORLD() = delete;

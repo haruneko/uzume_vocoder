@@ -15,6 +15,9 @@ class SynthesizeSegment;
 
 namespace uzume { namespace vocoder { namespace world {
 
+/**
+ * SynthesizeWaveformWithWORLD is an implementation of SynthesizeWaveform with WORLD.
+ */
 class SynthesizeWaveformWithWORLD final : public SynthesizeWaveform {
 public:
     static const std::function<SynthesizeImpulseResponse *(unsigned int, unsigned int)> DefaultSynthesizeImpulseResponseFactory;

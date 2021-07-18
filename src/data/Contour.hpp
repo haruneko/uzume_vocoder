@@ -6,14 +6,24 @@
 
 namespace uzume { namespace vocoder {
 
+/**
+ * Contour represents array values in time axis.
+ */
 class Contour final {
 public:
     Contour() = delete;
     Contour(double msLength, double msFramePeriod);
     ~Contour();
 
+    /**
+     * @param ms points the time.
+     * @return the value at ms.
+     */
     double at(double ms) const;
 
+    /**
+     * @return an entire length in milli seconds.
+     */
     double msLength() const;
 
     const int length;

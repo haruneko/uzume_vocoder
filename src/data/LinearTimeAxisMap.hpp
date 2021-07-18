@@ -9,6 +9,9 @@
 namespace uzume {
 namespace vocoder {
 
+/**
+ * LinearTimeAxisMap is an implementation of TimeAxisMap that simply cut and stretch time axis.
+ */
 class LinearTimeAxisMap final : public TimeAxisMap {
 public:
     LinearTimeAxisMap(double msLeft, double msRight, double msLength);
