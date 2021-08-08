@@ -45,7 +45,7 @@ public:
     unsigned int fftSize() const override;
 
 private:
-    Waveform *waveform; // Note that waveform is `not` generated in this class.
+    Waveform *waveform; // Note that waveform   is `not` generated in this class.
 
     AnalyzeAperiodicity *analyzeAperiodicity;
     AnalyzePeriodicity *analyzePeriodicity;

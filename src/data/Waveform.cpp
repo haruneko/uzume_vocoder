@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 #include "../world/audioio.h"
 #include "Waveform.hpp"
+#include <cmath>
 
 using namespace uzume::vocoder;
 
@@ -16,10 +17,6 @@ Waveform::Waveform(unsigned int length, unsigned int samplingFrequency)
 
 Waveform::~Waveform() {
     delete[] data;
-}
-
-double Waveform::msLength() const {
-    return (double)length / samplingFrequency * 1000.0;
 }
 
 Waveform *Waveform::read(const char *filepath) {
@@ -45,4 +42,36 @@ void Waveform::clear() {
            data[i] = 0.0;
        }
     }
+}
+
+double Waveform::maxAbsoluteValueBetween(double msBegin, double msEnd) const {
+    return maxAbsoluteValueBetween(indexAt(msBegin), indexAt(msEnd));
+}
+
+double Waveform::maxAbsoluteValueBetween(int indexBegin, int indexEnd) const {
+    double r = 0.0;
+    int indexStart = indexBegin < 0 ? 0 : indexBegin;
+    int indexStop = indexEnd < length ? indexEnd : (int)length;
+    for(int i = indexStart; i < indexStop; i++) {
+        double v = fabs(data[i]);
+        r = r < v ? v : r;
+    }
+    return r;
+}
+
+double Waveform::rootMeanSquareBetween(double msBegin, double msEnd) const {
+    return rootMeanSquareBetween(indexAt(msBegin), indexAt(msEnd));
+}
+
+double Waveform::rootMeanSquareBetween(int indexBegin, int indexEnd) const {
+    double r = 0.0;
+    int indexStart = indexBegin < 0 ? 0 : indexBegin;
+    int indexStop = indexEnd < length ? indexEnd : (int)length;
+    for(int i = indexStart; i < indexStop; i++) {
+        r += data[i] * data[i];
+    }
+    if(indexStop - indexStart != 0) {
+        r /= (double)(indexStop - indexStart);
+    }
+    return sqrt(r);
 }

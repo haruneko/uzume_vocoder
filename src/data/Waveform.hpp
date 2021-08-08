@@ -17,7 +17,9 @@ public:
     /**
      * @return length of this waveform in milli seconds.
      */
-    double msLength() const;
+    inline double msLength() const {
+        return (double)length / samplingFrequency * 1000.0;
+    }
 
     double *data;
     unsigned int length;
@@ -42,6 +44,42 @@ public:
      * `clear` clears waveform data with 0 value.
      */
     void clear();
+
+    /**
+     * @param msBegin represents milliseconds of start position.
+     * @param msEnd represents milliseconds of end position.
+     * @return root mean square between `msBegin` and `msEnd`.
+     */
+    double rootMeanSquareBetween(double msBegin, double msEnd) const;
+
+    /**
+     * @param indexBegin represents the index of start position.
+     * @param indexEnd represents the index of end position.
+     * @return root mean square between `indexBegin` and `indexEnd`.
+     */
+    double rootMeanSquareBetween(int indexBegin, int indexEnd) const;
+
+    /**
+     * @param msBegin represents milliseconds of start position.
+     * @param msEnd represents milliseconds of end position.
+     * @return the biggest absolute value between `msBegin` and `msEnd`.
+     */
+    double maxAbsoluteValueBetween(double msBegin, double msEnd) const;
+
+    /**
+     * @param indexBegin represents the index of start position.
+     * @param indexEnd represents the index of end position.
+     * @return the biggest absolute value between `indexBegin` and `indexEnd`.
+     */
+    double maxAbsoluteValueBetween(int indexBegin, int indexEnd) const;
+
+    /**
+     * @param ms represents milliseconds.
+     * @return the corresponding index of waveform array.
+     */
+    inline int indexAt(double ms) const {
+            return (int)(ms / msLength() * length);
+    }
 };
 
 } }
