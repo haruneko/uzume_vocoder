@@ -4,6 +4,8 @@
 #ifndef UZUME_VOCODER_WAVEFORM_HPP
 #define UZUME_VOCODER_WAVEFORM_HPP
 
+#include <vector>
+
 namespace uzume { namespace vocoder {
 
 /**
@@ -79,6 +81,21 @@ public:
      */
     inline int indexAt(double ms) const {
             return (int)(ms / msLength() * length);
+    }
+
+    /**
+     * @brief `at` returns a value specified by `index`.
+     * @param index to return value.
+     * @return double 
+     */
+    inline double at(int index) const {
+        index = std::max<int>(0, std::min<int>(index, length -1));
+        return data[index];
+    }
+
+    inline void setAt(int index, double value) {
+        index = std::max<int>(0, std::min<int>(index, length -1));
+        data[index] = value;
     }
 };
 
