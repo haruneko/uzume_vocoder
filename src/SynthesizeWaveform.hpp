@@ -3,11 +3,10 @@
 // license that can be found in the LICENSE file.
 #ifndef __UZUME_VOCODER_SYNTHESIZE_WAVEFORM_HPP__
 #define __UZUME_VOCODER_SYNTHESIZE_WAVEFORM_HPP__
+#include "Spectrogram.hpp"
+#include "data/Waveform.hpp"
 
 namespace uzume { namespace vocoder {
-
-class Spectrogram;
-class Waveform;
 
 /**
  * SynthesizeWaveform is an interface that synthesize waveform from given spectrogram.
