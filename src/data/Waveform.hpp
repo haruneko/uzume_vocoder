@@ -84,17 +84,21 @@ public:
     }
 
     /**
-     * @brief `at` returns a value specified by `index`.
+     * @brief `at` returns a value specified by `index`. Note that this function does not protect the boundary.
      * @param index to return value.
      * @return double 
      */
     inline double at(int index) const {
-        index = std::max<int>(0, std::min<int>(index, length -1));
         return data[index];
     }
 
+    /**
+     * @brief Set the `value` at the `index`. Note that this function does not protect the boundary.
+     * 
+     * @param index to set value at
+     * @param value to set
+     */
     inline void setAt(int index, double value) {
-        index = std::max<int>(0, std::min<int>(index, length -1));
         data[index] = value;
     }
 };
