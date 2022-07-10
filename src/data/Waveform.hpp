@@ -4,6 +4,8 @@
 #ifndef UZUME_VOCODER_WAVEFORM_HPP
 #define UZUME_VOCODER_WAVEFORM_HPP
 
+#include <vector>
+
 namespace uzume { namespace vocoder {
 
 /**
@@ -79,6 +81,25 @@ public:
      */
     inline int indexAt(double ms) const {
             return (int)(ms / msLength() * length);
+    }
+
+    /**
+     * @brief `at` returns a value specified by `index`. Note that this function does not protect the boundary.
+     * @param index to return value.
+     * @return double 
+     */
+    inline double at(int index) const {
+        return data[index];
+    }
+
+    /**
+     * @brief Set the `value` at the `index`. Note that this function does not protect the boundary.
+     * 
+     * @param index to set value at
+     * @param value to set
+     */
+    inline void setAt(int index, double value) {
+        data[index] = value;
     }
 };
 
