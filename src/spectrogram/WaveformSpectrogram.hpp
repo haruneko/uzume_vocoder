@@ -31,7 +31,7 @@ public:
                                  const std::function<EstimateF0 *(
                                          double)> &f0EstimationFactory = DefaultAnalysis::F0EstimationFactory);
 
-    ~WaveformSpectrogram() final;
+    ~WaveformSpectrogram() noexcept final;
 
     bool pickUpSpectrumAt(Spectrum *destination, double ms) const override;
 
