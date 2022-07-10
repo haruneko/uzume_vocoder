@@ -19,6 +19,7 @@ target_sources(uzume_vocoder
         data/Spectrum.cpp
         data/Waveform.cpp
         spectrogram/ArraySpectrogramAggregator.cpp
+        spectrogram/DefaultAnalysis.cpp
         spectrogram/NaiveSpectrogram.cpp
         spectrogram/StretchedPartialSpectrogram.cpp
         spectrogram/WaveformSpectrogram.cpp
@@ -48,6 +49,7 @@ set_property(TARGET uzume_vocoder
         data/Spectrum.hpp
         data/Waveform.hpp
         spectrogram/ArraySpectrogramAggregator.hpp
+        spectrogram/DefaultAnalysis.hpp
         spectrogram/NaiveSpectrogram.hpp
         spectrogram/StretchedPartialSpectrogram.hpp
         spectrogram/WaveformSpectrogram.hpp

@@ -13,6 +13,7 @@
 #include "../data/InstantWaveform.hpp"
 #include "../Spectrogram.hpp"
 #include "../data/Waveform.hpp"
+#include "./DefaultAnalysis.hpp"
 
 namespace uzume { namespace vocoder {
 
@@ -22,17 +23,13 @@ namespace uzume { namespace vocoder {
  */
 class WaveformSpectrogram final : public Spectrogram {
 public:
-    static const std::function<AnalyzeAperiodicity *(unsigned int)> DefaultAperiodicAnalysisFactory;
-    static const std::function<AnalyzePeriodicity *(unsigned int)> DefaultPeriodicAnalysisFactory;
-    static const std::function<EstimateF0 *(double)> DefaultF0EstimationFactory;
-
-    explicit WaveformSpectrogram(Waveform *waveform,
+    explicit WaveformSpectrogram(const Waveform *waveform,
                                  const std::function<AnalyzeAperiodicity *(
-                                         unsigned int)> &aperiodicAnalysisFactory = DefaultAperiodicAnalysisFactory,
+                                         unsigned int)> &aperiodicAnalysisFactory = DefaultAnalysis::AperiodicAnalysisFactory,
                                  const std::function<AnalyzePeriodicity *(
-                                         unsigned int)> &periodicAnalysisFactory = DefaultPeriodicAnalysisFactory,
+                                         unsigned int)> &periodicAnalysisFactory = DefaultAnalysis::PeriodicAnalysisFactory,
                                  const std::function<EstimateF0 *(
-                                         double)> &f0EstimationFactory = DefaultF0EstimationFactory);
+                                         double)> &f0EstimationFactory = DefaultAnalysis::F0EstimationFactory);
 
     ~WaveformSpectrogram() final;
 
@@ -45,7 +42,7 @@ public:
     unsigned int fftSize() const override;
 
 private:
-    Waveform *waveform; // Note that waveform   is `not` generated in this class.
+    const Waveform *waveform; // Note that waveform   is `not` generated in this class.
 
     AnalyzeAperiodicity *analyzeAperiodicity;
     AnalyzePeriodicity *analyzePeriodicity;

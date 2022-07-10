@@ -2,30 +2,14 @@
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
 #include <algorithm>
-#include "../world/AnalyzeAperiodicityWithD4C.hpp"
 #include "../AnalyzePeriodicity.hpp"
 #include "../world/constant.hpp"
-#include "../world/EstimateF0WithDIO.hpp"
 #include "../world/util.hpp"
 #include "WaveformSpectrogram.hpp"
-#include "../world/AnalyzePeriodicityWithCheapTrick.hpp"
 
 using namespace uzume::vocoder;
-using namespace uzume::vocoder::world;
 
-const std::function<AnalyzeAperiodicity *(unsigned int)> WaveformSpectrogram::DefaultAperiodicAnalysisFactory = [](unsigned int samplingFrequency) {
-    return new AnalyzeAperiodicityWithD4C(samplingFrequency);
-};
-
-const std::function<AnalyzePeriodicity *(unsigned int)> WaveformSpectrogram::DefaultPeriodicAnalysisFactory = [](unsigned int samplingFrequency) {
-    return new AnalyzePeriodicityWithCheapTrick(samplingFrequency);
-};
-
-const std::function<EstimateF0 *(double)> WaveformSpectrogram::DefaultF0EstimationFactory = [](double msFramePeriod) {
-    return new EstimateF0WithDIO(msFramePeriod);
-};
-
-WaveformSpectrogram::WaveformSpectrogram(Waveform *waveform,
+WaveformSpectrogram::WaveformSpectrogram(const Waveform *waveform,
         const std::function<AnalyzeAperiodicity *(unsigned int)> &aperiodicAnalysisFactory,
         const std::function<AnalyzePeriodicity *(unsigned int)> &periodicAnalysisFactory,
         const std::function<EstimateF0 *(double)> &f0EstimationFactory)
@@ -60,7 +44,7 @@ double WaveformSpectrogram::msLength() const {
 
 double WaveformSpectrogram::f0At(double ms) const {
     double f = f0->at(ms);
-    return f < FloorF0 ? 0.0 : f;
+    return f < world::FloorF0 ? 0.0 : f;
 }
 
 bool WaveformSpectrogram::pickUpSpectrumAt(Spectrum *destination, double ms) const {

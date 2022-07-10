@@ -3,6 +3,8 @@
 // license that can be found in the LICENSE file.
 #include <cmath>
 #include "NaiveSpectrogram.hpp"
+#include "WaveformSpectrogram.hpp"
+#include "../data/Contour.hpp"
 #include "../world/util.hpp"
 
 using namespace uzume::vocoder;
@@ -43,7 +45,7 @@ NaiveSpectrogram::NaiveSpectrogram(unsigned int length, unsigned int fftSize, do
     if (length != 0 && fftSize != 0) {
         initializeSpecgram(&periodicSpecgram, length, fftSize);
         initializeSpecgram(&aperiodicSpecgram, length, fftSize);
-        f0Contour = new double[fftSize];
+        f0Contour = new Contour(length, msFramePeriod);
         timeAxis = new double[fftSize];
     }
 }
@@ -51,7 +53,7 @@ NaiveSpectrogram::NaiveSpectrogram(unsigned int length, unsigned int fftSize, do
 NaiveSpectrogram::~NaiveSpectrogram() {
     deleteSpecgram(length, &periodicSpecgram);
     deleteSpecgram(length, &aperiodicSpecgram);
-    delete[] f0Contour;
+    delete f0Contour;
     delete[] timeAxis;
 }
 
@@ -75,10 +77,7 @@ bool NaiveSpectrogram::pickUpSpectrumAt(Spectrum *destination, double ms) const 
 }
 
 double NaiveSpectrogram::f0At(double ms) const {
-    auto f0IndexFloor = (int)(floor(ms / msFramePeriod));
-    auto f0IndexCeil = (int)(ceil(ms / msFramePeriod));
-    double interpolation = (ms - f0IndexFloor * msFramePeriod) / msFramePeriod;
-    return f0Contour[f0IndexFloor] * (1.0 - interpolation) + f0Contour[f0IndexCeil] * interpolation;
+    return f0Contour->at(ms);
 }
 
 double NaiveSpectrogram::msLength() const {
@@ -87,4 +86,25 @@ double NaiveSpectrogram::msLength() const {
 
 unsigned int NaiveSpectrogram::fftSize() const {
     return _fftSize;
+}
+
+NaiveSpectrogram *NaiveSpectrogram::from(const Waveform *wave, double msFramePeriod) {
+    unsigned int fftSize = world::fftSize(wave->samplingFrequency);
+    double msLength = (double)wave->length / (double)wave->samplingFrequency * 1000.0;
+    unsigned int length = 1 + (int)(msLength / msFramePeriod);
+    auto result = new NaiveSpectrogram(length, fftSize, msFramePeriod);
+
+    WaveformSpectrogram w(wave);
+    Spectrum s(fftSize);
+    for(int i = 0; i < length; i++) {
+        double ms = i * msFramePeriod;
+        result->f0Contour->data[i] = w.f0At(ms);
+        w.pickUpSpectrumAt(&s, ms);
+        for(int j = 0; j <= fftSize / 2; j++) {
+            result->aperiodicSpecgram[i][j] = s.aperiodicSpectrum[j];
+            result->periodicSpecgram[i][j] = s.periodicSpectrum[j];
+        }
+    }
+
+    return result;
 }

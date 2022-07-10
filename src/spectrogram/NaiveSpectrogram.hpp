@@ -3,7 +3,10 @@
 // license that can be found in the LICENSE file.
 #ifndef UZUME_VOCODER_NAIVE_SPECTROGRAM_HPP
 #define UZUME_VOCODER_NAIVE_SPECTROGRAM_HPP
+
 #include "../Spectrogram.hpp"
+#include "../data/Contour.hpp"
+#include "../data/Waveform.hpp"
 
 namespace uzume { namespace vocoder {
 
@@ -18,14 +21,16 @@ public:
 
     ~NaiveSpectrogram() override;
 
-    bool pickUpSpectrumAt(Spectrum *destination, double ms) const override;
-    double f0At(double ms) const override;
-    double msLength() const override;
-    unsigned int fftSize() const override;
+    bool pickUpSpectrumAt(Spectrum *destination, double ms) const override final;
+    double f0At(double ms) const override final;
+    double msLength() const override final;
+    unsigned int fftSize() const override final;
+
+    static NaiveSpectrogram *from(const Waveform *wave, double msFramePeriod);
 
     double **periodicSpecgram;
     double **aperiodicSpecgram;
-    double *f0Contour;
+    Contour *f0Contour;
     double *timeAxis;
 
 private:
