@@ -20,13 +20,17 @@ double ControlChange::at(double position) const {
             break;
         }
     }
-    if(i != points.begin()) {
+    if(i == points.end()) {
+        auto p = i;
+        p--;
+        return p->ratio;
+    } else if(i == points.begin()) {
+        return i->ratio;
+    } else {
         auto p = i;
         p--;
         double interop = (position - p->position) / (i->position - p->position);
         return p->ratio * (1.0 - interop) + i->ratio * interop;
-    } else {
-        return i->ratio;
     }
 }
 

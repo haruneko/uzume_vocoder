@@ -28,6 +28,7 @@ target_sources(uzume_vocoder_test
         data/LinearTimeAxisMapTest.cpp
         data/WaveformTest.cpp
         spectrogram/ArraySpectrogramAggregatorTest.cpp
+        spectrogram/GenEditedSpectrogramTest.cpp
         spectrogram/StretchedPartialSpectrogramTest.cpp
         spectrogram/WaveformSpectrogramTest.cpp)
 
