@@ -13,6 +13,7 @@ target_compile_features(uzume_vocoder
 target_sources(uzume_vocoder
         PRIVATE
         data/Contour.cpp
+        data/ControlChange.cpp
         data/ImpulseResponse.cpp
         data/InstantWaveform.cpp
         data/LinearTimeAxisMap.cpp
@@ -20,6 +21,8 @@ target_sources(uzume_vocoder
         data/Waveform.cpp
         spectrogram/ArraySpectrogramAggregator.cpp
         spectrogram/DefaultAnalysis.cpp
+        spectrogram/F0EditedSpectrogram.cpp
+        spectrogram/GenEditedSpectrogram.cpp
         spectrogram/NaiveSpectrogram.cpp
         spectrogram/StretchedPartialSpectrogram.cpp
         spectrogram/WaveformSpectrogram.cpp
@@ -43,6 +46,7 @@ set_property(TARGET uzume_vocoder
         SynthesizeImpulseResponse.hpp
         SynthesizeSegment.hpp
         data/Contour.hpp
+        data/ControlChange.hpp
         data/ImpulseResponse.hpp
         data/InstantWaveform.hpp
         data/LinearTimeAxisMap.hpp
@@ -50,6 +54,8 @@ set_property(TARGET uzume_vocoder
         data/Waveform.hpp
         spectrogram/ArraySpectrogramAggregator.hpp
         spectrogram/DefaultAnalysis.hpp
+        spectrogram/F0EditedSpectrogram.hpp
+        spectrogram/GenEditedSpectrogram.hpp
         spectrogram/NaiveSpectrogram.hpp
         spectrogram/StretchedPartialSpectrogram.hpp
         spectrogram/WaveformSpectrogram.hpp
