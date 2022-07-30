@@ -6,6 +6,9 @@
 
 using namespace uzume::vocoder;
 
+ControlChange::ControlChange(const std::vector<ControlPoint> &other) : points(other) {
+}
+
 ControlChange::ControlChange(const ControlChange &other) : points(other.points) {
 }
 

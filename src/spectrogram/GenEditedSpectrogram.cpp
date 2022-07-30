@@ -15,7 +15,7 @@ bool GenEditedSpectrogram::pickUpSpectrumAt(Spectrum *destination, double ms) co
     bool result = spectrogram->pickUpSpectrumAt(&s, ms);
     if(!result) return false;
 
-    double ratio = cc.at(ms / msLength());
+    double ratio = pow(2, cc.at(ms / msLength()));
     int maxIndex = fftSize() / 2;
     for(int i = 0; i <= destination->fftSize / 2; i++) {
         double dIndex = (double)i * ratio;

@@ -4,7 +4,7 @@
 #ifndef UZUME_VOCODER_CONTROL_CHANGE_HPP
 #define UZUME_VOCODER_CONTROL_CHANGE_HPP
 
-#include <list>
+#include <vector>
 
 namespace uzume { namespace vocoder {
 
@@ -16,6 +16,7 @@ struct ControlPoint final {
 class ControlChange final {
 public:
     ControlChange() = delete;
+    explicit ControlChange(const std::vector<ControlPoint> &other);
     explicit ControlChange(const ControlChange &other);
     explicit ControlChange(double initialValue);
 
@@ -23,7 +24,7 @@ public:
     void add(const ControlPoint &p);
     void clear(double initialValue);
 private:
-    std::list<ControlPoint> points;
+    std::vector<ControlPoint> points;
 };
 
 } }

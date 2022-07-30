@@ -4,10 +4,17 @@
 #ifndef UZUME_VOCODER_FO_EDITED_SPECTROGRAM_HPP
 #define UZUME_VOCODER_FO_EDITED_SPECTROGRAM_HPP
 
+#include <functional>
 #include "../Spectrogram.hpp"
 #include "../data/ControlChange.hpp"
 
 namespace uzume { namespace vocoder {
+
+enum class SynthType {
+    Linear,
+    Log
+};
+
 
 /**
  * F0EditedSpectrogram is a wrapper spectrogram with F0 edited by ControlChange.
@@ -16,7 +23,7 @@ namespace uzume { namespace vocoder {
  */
 class F0EditedSpectrogram final : public Spectrogram {
 public:
-    F0EditedSpectrogram(const Spectrogram *spectrogram, const ControlChange &cc);
+    F0EditedSpectrogram(const Spectrogram *spectrogram, const ControlChange &cc, const SynthType synthType);
 
     bool pickUpSpectrumAt(Spectrum *destination, double ms) const override;
     double f0At(double ms) const override;
@@ -25,6 +32,7 @@ public:
 private:
     const Spectrogram *spectrogram;
     ControlChange cc;
+    std::function<double(double, double)> f;
 };
 
 } }
