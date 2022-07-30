@@ -32,7 +32,7 @@ bool F0EditedSpectrogram::pickUpSpectrumAt(Spectrum *destination, double ms) con
 
 double F0EditedSpectrogram::f0At(double ms) const {
     double position = ms / msLength();
-    return this->f(cc.at(position), spectrogram->f0At(ms));
+    return this->f(spectrogram->f0At(ms), cc.at(position));
 }
 
 double F0EditedSpectrogram::msLength() const {
